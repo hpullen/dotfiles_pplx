@@ -115,7 +115,7 @@ nnoremap k gk
 set foldenable
 set foldnestmax=5
 " Start with all folds open
-set foldlevelstart=0
+set foldlevelstart=5
 set foldmethod=syntax
 " Open/close folds with space
 nnoremap <space> za
@@ -202,7 +202,18 @@ let g:ctrlp_match_window = 'results:20'
 let g:ctrlp_open_new_file = 'r'
 " Set working directory to nearest ancestor containing .git
 let g:ctrlp_working_path_mode = 'ra'
-" If file already open, open again in new pane
-let g:ctrlp_switch_buffer = 'et'
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" Syntastic settings
+" Turn off by default for c/cpp (using ycm) and python (annoying for
+" davinci/ganga)
+let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'cpp', 'python'] }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" Don't let error list get too big
+let g:syntastic_loc_list_height=4
+" Toggle active/passive mode with \s
+nnoremap <leader>s :SyntasticToggleMode<CR>
