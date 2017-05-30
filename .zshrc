@@ -58,8 +58,8 @@ POWERLEVEL9K_BATTERY_LOW_COLOR='red'
 POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
 # Time format
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
-# Left prompt: os icon, current directory, git info
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+# Left prompt: os icon, current directory
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir)
 # Right prompt: return status of last command, battery level, time
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)	
 
