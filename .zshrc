@@ -26,6 +26,9 @@ export EDITOR='vim'
 # Path to your oh-my-zsh installation.
 export ZSH=/home/pullen/.oh-my-zsh
 
+# Add analysis code directory to CDPATH
+export CDPATH=/home/pullen/analysis/tuple_scripts/analysis_code/
+
 # Current working directory
 alias cwd=~/analysis/tuple_scripts/plot_histos/partially_reconstructed_background/Code
 hash cwd=~/analysis/data_HT/tuple_scripts/plot_histos/partially_reconstructed_background
@@ -89,6 +92,7 @@ alias c="clear"
 alias cls="clear && ls"	
 alias del="rmtrash"
 alias logout="exit"
+alias make="make -j 10"
 
 # Unalias rm -i from common-aliases plugin
 unalias rm
@@ -113,14 +117,6 @@ alias dstdump="lb-run Bender/latest dst-dump -f -n 100"
 alias ks="tmux kill-session"
 alias kw="tmux kill-window"
 alias kp="tmux kill-pane"
-
-# Suffix aliases
-alias -s txt=vim
-alias -s C=vim
-alias -s cpp=vim
-alias -s h=vim
-alias -s hpp=vim
-alias -s py=vim
 
 # General functions
 # cd and cls
@@ -167,6 +163,14 @@ alias cpc='copyContents'
 
 # LD_LIBRARY_PATH should include my libraries
 export LD_LIBRARY_PATH=/home/pullen/Library:$LD_LIBRARY_PATH
+
+# Path to Linuxbrew
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+
+# SimpleTools
+SIMPLETOOLS=$HOME/simpletools_2.0u 
+export LD_LIBRARY_PATH=$SIMPLETOOLS/lib:$LD_LIBRARY_PATH
+export PATH=$SIMPLETOOLS/bin:$PATH
 
 # Clear screen
 clear && ls

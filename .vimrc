@@ -53,6 +53,9 @@ nnoremap ¬ <C-w>l
 " Make Y behave like C and D (yank to end of line)
 nnoremap Y y$
 
+" Copy to pplx vim clipboard
+vnoremap <silent> <leader>y :w! ~/.vim.clipboard<CR>
+
 " Split line with K
 nnoremap K i<CR><ESC>
 " Split line and add quotes with \k and \j
@@ -120,9 +123,10 @@ set foldmethod=syntax
 " Open/close folds with space
 nnoremap <space> za
 
-" Save and reload view on closing/opening a buffer
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+" Fix highlight colour in Sneak (need to call before colorscheme)
+autocmd ColorScheme * hi Sneak guifg=black guibg=red ctermfg=black ctermbg=red
+autocmd ColorScheme * hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+autocmd ColorScheme * hi SneakLabel guifg=white guibg=magenta ctermfg=white ctermbg=green
 
 " Colourscheme
 set background=dark
@@ -161,12 +165,28 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 " Abolish
 Plug 'tpope/vim-abolish'
-" Repeat for surround and abolish
+" Repeat for tpope plugins
 Plug 'tpope/vim-repeat'
 " Automatic bracket closing
 Plug 'raimondi/delimitmate'
-" CtrlP
+" Fuzzy file search
 Plug 'ctrlpvim/ctrlp.vim'
+" Undo visualization
+Plug 'mbbill/undotree'
+" Buffer closing without closing window (use :Bd)
+Plug 'moll/vim-bbye'
+" Rainbow parentheses
+Plug 'junegunn/rainbow_parentheses.vim'
+" Better incremental searching
+Plug 'haya14busa/incsearch.vim'
+" Easy aligning
+Plug 'junegunn/vim-easy-align'
+" 2-character version of f and t
+Plug 'justinmk/vim-sneak'
+" Mappings  
+Plug 'tpope/vim-unimpaired'
+" More word objects
+Plug 'wellle/targets.vim'
 call plug#end()
 
 " NERDcommenter settings
@@ -198,7 +218,8 @@ let g:ctrlp_cmd = 'CtrlP'
 noremap <c-b> :CtrlPBuffer<CR>
 " Increase number of results shown in search
 let g:ctrlp_match_window = 'results:20'
-" Open multiple files in same window
+" Open new files in same window
+let g:ctrlp_open_multiple_files = '1vjr'
 let g:ctrlp_open_new_file = 'r'
 " Set working directory to nearest ancestor containing .git
 let g:ctrlp_working_path_mode = 'ra'
@@ -217,3 +238,37 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height=4
 " Toggle active/passive mode with \s
 nnoremap <leader>s :SyntasticToggleMode<CR>
+
+" Still autoindent with delimitmate
+let delimitMate_expand_cr = 1
+let delimirMate_expand_space = 1
+
+" Sneak remappings
+map + <Plug>Sneak_s
+map - <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
+" easy-align mappings
+xmap ga <plug>(easyalign)
+nmap ga <plug>(easyalign)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Incsearch mappings
+" Use incsearch instead of standard
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" Turn off highlighting when cursor moves 
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+" Toggle rainbow parentheses (in style of Unimpaired)
+map cop :RainbowParentheses!!<CR>
