@@ -59,7 +59,7 @@ POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
 # Time format
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 # Left prompt: os icon, current directory, git info
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 # Right prompt: return status of last command, battery level, time
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)	
 
@@ -82,14 +82,20 @@ unsetopt correct
 # Stop sharing history between tmux panes
 setopt nosharehistory
 
+# GNU ls colours
+eval `dircolors ~/clone/dircolors-solarized/dircolors.ansi-dark`
+# Use in tab completion in zsh
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 # General aliases
 alias zshrc="vim ~/.zshrc"
 alias sourcez="source ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
-alias ls="ls -G"
-alias la="ls -a"
+alias ls="ls --color=auto"
+alias la="ls -a --color=auto"
+alias ll="ls -l --color=auto"
 alias c="clear"
-alias cls="clear && ls"	
+alias cls="clear && ls --color=auto"	
 alias del="rmtrash"
 alias logout="exit"
 alias make="make -j 10"
@@ -117,6 +123,9 @@ alias dstdump="lb-run Bender/latest dst-dump -f -n 100"
 alias ks="tmux kill-session"
 alias kw="tmux kill-window"
 alias kp="tmux kill-pane"
+
+# CDPATH contains places to look for directories
+export CDPATH=/home/pullen/analysis/tuple_scripts/analysis_code/:/data/lhcb/users/pullen/gangadir/ntuples/reduced_ntuples/
 
 # General functions
 # cd and cls
