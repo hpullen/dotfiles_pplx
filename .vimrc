@@ -62,6 +62,11 @@ nnoremap K i<CR><ESC>
 nnoremap <leader>k i"<CR>"<ESC>
 nnoremap <leader>j i'<CR>'<ESC>
 
+" Quick open vimrc with leader M
+nnoremap <leader>m :vsp $MYVIMRC<CR>
+" Reload vimrc with leader r
+nnoremap <leader>r :so $MYVIMRC<CR>
+
 " Modify search options
 " Smart case sensitivity
 set ignorecase
@@ -145,6 +150,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Plugins
 " Vim-plug
 call plug#begin()
+" Run processes in the background
+Plug 'joonty/vim-do'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer

@@ -99,6 +99,7 @@ alias cls="clear && ls --color=auto"
 alias del="rmtrash"
 alias logout="exit"
 alias make="make -j 10"
+alias open="gnome-open"
 
 # Unalias rm -i from common-aliases plugin
 unalias rm
