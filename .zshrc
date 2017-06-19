@@ -1,6 +1,6 @@
 # source global definitions
 ###do not remove the following lines###
-if [ -f /etc/bashrc ]; then
+if [ -f /etc/zshrc ]; then
     . /etc/zshrc
 else
    echo "**system default start-up file: /etc/zshrc unreadable!  contact"
@@ -114,7 +114,6 @@ alias getfile="lb-run LHCbDIRAC dirac-dms-get-file"
 export GANGADIR="/data/lhcb/users/pullen/gangadir"
 alias gangadir=/data/lhcb/users/pullen/gangadir
 hash -d gangadir=/data/lhcb/users/pullen/gangadir
-alias ganga="lb-run ganga ganga"
 alias dvg="lb-run DaVinci/v41r2 gaudirun.py"
 alias dvi="lb-run DaVinci/v41r2 ipython -i"
 alias bender="lb-run Bender/latest bender"
