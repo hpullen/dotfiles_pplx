@@ -125,6 +125,16 @@ alias kp="tmux kill-pane"
 # CDPATH contains places to look for directories
 export CDPATH=/home/pullen/analysis/tuple_scripts/analysis_code/:/data/lhcb/users/pullen/gangadir/ntuples/reduced_ntuples/
 
+# Write display to file on login to a non-tmux shell
+if [ -z "$TMUX" ]
+then 
+    echo $DISPLAY > ~/.display
+fi
+# Function to fix display in tmux
+function fix_display {
+    export DISPLAY=`cat ~/.display`
+}
+
 # General functions
 # cd and cls
 function cdl { cd "$@" && clear && ls; }
