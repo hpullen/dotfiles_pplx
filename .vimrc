@@ -53,6 +53,9 @@ nnoremap ¬ <C-w>l
 " Make Y behave like C and D (yank to end of line)
 nnoremap Y y$
 
+" Select last put text with gp
+nnoremap gp `[v`]
+
 " Copy to pplx vim clipboard
 vnoremap <silent> <leader>y :w! ~/.vim.clipboard<CR>
 
