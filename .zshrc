@@ -99,6 +99,9 @@ alias logout="exit"
 alias make="make -j 10"
 alias open="gnome-open"
 
+# Remove all deleted files from git
+alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"
+
 # Unalias rm -i from common-aliases plugin
 unalias rm
 
