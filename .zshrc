@@ -70,7 +70,7 @@ HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(common-aliases git python pip zsh-syntax-highlighting)
+plugins=(common-aliases git python pip tmux zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,6 +79,10 @@ unsetopt correct
 
 # Stop sharing history between tmux panes
 setopt nosharehistory
+
+# Load zmv and zcalc
+autoload -U zmv
+autoload -Uz zcalc
 
 # GNU ls colours
 eval `dircolors ~/clone/dircolors-solarized/dircolors.ansi-dark`
@@ -97,7 +101,7 @@ alias cls="clear && ls --color=auto"
 alias del="rmtrash"
 alias logout="exit"
 alias make="make -j 10"
-alias open="gnome-open"
+alias open="fix_display && gnome-open"
 
 # Remove all deleted files from git
 alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"
@@ -109,7 +113,7 @@ unalias rm
 unalias h
 
 # LHCb aliases
-alias root="root -l"
+alias root="fix_display && root -l"
 alias proxyinit="lb-run LHCbDIRAC lhcb-proxy-init"
 alias getfile="lb-run LHCbDIRAC dirac-dms-get-file"
 export GANGADIR="/data/lhcb/users/pullen/gangadir"

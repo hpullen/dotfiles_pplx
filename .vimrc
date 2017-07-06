@@ -225,7 +225,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Mappings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-noremap <c-b> :CtrlPBuffer<CR>
 " Increase number of results shown in search
 let g:ctrlp_match_window = 'results:20'
 " Open new files in same window
