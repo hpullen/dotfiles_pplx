@@ -5,7 +5,7 @@ syntax enable
 set nocompatible
 " Hybrid line number mode
 set relativenumber
-set number  
+set number
 " Allow mouse usage
 set mouse=nicr
 " Auto/smart indentation
@@ -65,10 +65,9 @@ nnoremap K i<CR><ESC>
 nnoremap <leader>k i"<CR>"<ESC>
 nnoremap <leader>j i'<CR>'<ESC>
 
-" Quick open vimrc with leader M
-nnoremap <leader>m :vsp $MYVIMRC<CR>
-" Reload vimrc with leader r
-nnoremap <leader>r :so $MYVIMRC<CR>
+" Mappings for editing/sourcing vimrc
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " Modify search options
 " Smart case sensitivity
@@ -83,7 +82,7 @@ set hlsearch
 " Turn off highlight with \<space>
 nnoremap <silent> <leader><space> :noh<cr>
 " Search for visually selected text with //
-vnoremap // y/\V<C-R>"<CR>  
+vnoremap // y/\V<C-R>"<CR>
 
 " Tab settings
 filetype off
@@ -94,22 +93,17 @@ set shiftwidth=4
 set expandtab
 
 " Disable autocommenting on new lines
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-au FileType c,cpp setlocal comments-=:// comments+=f://
+augroup filetype_C
+    autocmd!
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd FileType c,cpp setlocal comments-=:// comments+=f://
+    autocmd FileType c,cpp noremap <buffer> <silent> <leader>3 I//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
+    autocmd FileType c,cpp noremap <buffer> <silent> <leader>4 kddjddk^3xI//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
+    autocmd FileType c,cpp noremap <buffer> <silent> <leader>5 Istd::cout<space><<<space>"<esc>A"<space><<<space>std::endl;<esc>
+augroup END
 
 " Strip all trailing whitespace with \W
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Create equals signs after line of text
-nnoremap <silent> <leader>1 yypVr=
-" Surround line with Python comments 
-nnoremap <silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
-" Surround line with C comments
-noremap <silent> <leader>3 I//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
-" Regenerate C comments around line
-noremap <silent> <leader>4 kddjddk^3xI//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
-" Put quotes and std::cout around line
-noremap <silent> <leader>5 Istd::cout<space><<<space>"<esc>A"<space><<<space>std::endl;<esc>
 
 " Toggle paste mode on and off with F3
 set pastetoggle=<F3>
@@ -124,17 +118,42 @@ nnoremap k gk
 
 " Folding
 set foldenable
-set foldnestmax=5
+set foldnestmax=1
 " Start with all folds open
-set foldlevelstart=5
+set foldlevelstart=1
 set foldmethod=syntax
-" Open/close folds with space
-nnoremap <space> za
 
 " Fix highlight colour in Sneak (need to call before colorscheme)
-autocmd ColorScheme * hi Sneak guifg=black guibg=red ctermfg=black ctermbg=red
-autocmd ColorScheme * hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
-autocmd ColorScheme * hi SneakLabel guifg=white guibg=magenta ctermfg=white ctermbg=green
+augroup fixSneakHighlight
+    autocmd!
+    autocmd ColorScheme * hi Sneak guifg=black guibg=red ctermfg=black ctermbg=red
+    autocmd ColorScheme * hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+    autocmd ColorScheme * hi SneakLabel guifg=white guibg=magenta ctermfg=white ctermbg=green
+augroup END
+
+" Use spellcheck in text files
+augroup filetype_text
+    autocmd!
+    autocmd FileType text nnoremap <buffer> <silent> <leader>1 yypVr=
+    autocmd FileType text setlocal spell
+    autocmd FileType text setlocal textwidth=0
+    autocmd FileType text noremap <buffer> <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
+augroup END
+
+" Vim file autocommands
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal shortmess+=c
+    autocmd FileType vim setlocal textwidth=0
+    autocmd FileType vim setlocal wrap
+augroup END
+
+" Python file autocommands
+augroup filetype_python
+    autocmd!
+    autocmd Filetype python nnoremap <buffer><silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
+    autocmd Filetype python setlocal nosmartindent
+augroup END
 
 " Colourscheme
 set background=dark
@@ -153,8 +172,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Plugins
 " Vim-plug
 call plug#begin()
-" Run processes in the background
-Plug 'joonty/vim-do'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
@@ -165,8 +182,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Syntastic
 Plug 'vim-syntastic/syntastic'
-" Tabularize
-Plug 'godlygeek/tabular'
 " Fugitive
 Plug 'tpope/vim-fugitive'
 " Gitgutter
@@ -193,10 +208,12 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/vim-easy-align'
 " 2-character version of f and t
 Plug 'justinmk/vim-sneak'
-" Mappings  
+" Mappings
 Plug 'tpope/vim-unimpaired'
 " More word objects
 Plug 'wellle/targets.vim'
+" Bullet points
+Plug 'dkarter/bullets.vim'
 call plug#end()
 
 " NERDcommenter settings
@@ -209,6 +226,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Open NERDTree with ctrl-n
 noremap <C-n> :NERDTreeToggle<CR>
+
+" Open undotree with \u
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " Airline settings
 set laststatus=2
@@ -281,3 +301,12 @@ map g# <Plug>(incsearch-nohl-g#)
 
 " Toggle rainbow parentheses (in style of Unimpaired)
 map cop :RainbowParentheses!!<CR>
+
+" Filetypes to use Bullets.vim
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch',
+    \ 'tex'
+     \]
