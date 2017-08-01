@@ -204,15 +204,23 @@ make()
 {
     pathpat="^.*:[0-9]+"
     # cpppat="<w+\.cpp>"
-    cpppat="src.*\.cpp"
-    objpat="obj.*\.o"
+    cpppat="src.*\.cpp\>"
+    objpat="obj.*\.o\>"
     exepat="\<\w*\>"
+    incpat="-I[^ ]*\>"
+    libpat=" -l[^ ]*\>"
+    libpat2=" [^ ]*\.so\>"
+    btpat=' `.*`'
     ccred=$(echo -e "\033[0;31m")
     ccyellow=$(echo -e "\033[0;33m")
     ccgreen=$(echo -e "\033[0;32m")
     ccmagenta=$(echo -e "\033[0;35m")
     ccpurple=$(echo -e "\033[0;95m")
+    ccblue=$(echo -e "\033[0;34m")
+    cccyan=$(echo -e "\033[0;36m")
+    ccorange=$(echo -e "\033[0;91m")
     ccend=$(echo -e "\033[0m")
-    /usr/bin/make -j 10 "$@" 2>&1 | sed -E -e "/[Ee]rror[: ]/ s%$pathpat%$ccred&$ccend%g" -e "/[Ww]arning[: ]/ s%$pathpat%$ccyellow&$ccend%g" -e "/^g\+\+ -c/ s%$cpppat%$ccgreen&$ccend%g" -e "/^g\+\+/ s%$objpat%$ccpurple&$ccend%g" -e "/^g\+\+ -o/ s%$exepat%$ccmagenta&$ccend%3"
+    /usr/bin/make -j 10 "$@" 2>&1 | sed -E -e "/[Ee]rror[: ]/ s%$pathpat%$ccred&$ccend%g" -e "/[Ww]arning[: ]/ s%$pathpat%$ccyellow&$ccend%g" -e "/^g\+\+ -c/ s%$cpppat%$ccgreen&$ccend%g" -e "/^g\+\+/ s%$objpat%$ccpurple&$ccend%g" -e "/^g\+\+ -o/ s%$exepat%$ccmagenta&$ccend%3" -e "s%$libpat%$cccyan&$ccend%g" -e "s%$libpat2%$cccyan&$ccend%g" -e "s%$incpat%$ccblue&$ccend%g" -e "s%$btpat%$ccorange&$ccend%g" -e "/[Ee]rror[: ]/,+2 s%\^%$ccred&$ccend%g" -e "/[Ww]arning[: ]/,+2 s%\^%$ccyellow&$ccend%g"
+
     return ${PIPESTATUS[0]}
 }
