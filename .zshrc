@@ -202,10 +202,17 @@ clear && ls
 # Colour function for make
 make()
 {
-    pathpat="(/[^/]*)+:[0-9]+"
+    pathpat="^.*:[0-9]+"
+    # cpppat="<w+\.cpp>"
+    cpppat="src.*\.cpp"
+    objpat="obj.*\.o"
+    exepat="\<\w*\>"
     ccred=$(echo -e "\033[0;31m")
     ccyellow=$(echo -e "\033[0;33m")
+    ccgreen=$(echo -e "\033[0;32m")
+    ccmagenta=$(echo -e "\033[0;35m")
+    ccpurple=$(echo -e "\033[0;95m")
     ccend=$(echo -e "\033[0m")
-    /usr/bin/make -j 10 "$@" 2>&1 | sed -E -e "/[Ee]rror[: ]/ s%$pathpat%$ccred&$ccend%g" -e "/[Ww]arning[: ]/ s%$pathpat%$ccyellow&$ccend%g"
+    /usr/bin/make -j 10 "$@" 2>&1 | sed -E -e "/[Ee]rror[: ]/ s%$pathpat%$ccred&$ccend%g" -e "/[Ww]arning[: ]/ s%$pathpat%$ccyellow&$ccend%g" -e "/^g\+\+ -c/ s%$cpppat%$ccgreen&$ccend%g" -e "/^g\+\+/ s%$objpat%$ccpurple&$ccend%g" -e "/^g\+\+ -o/ s%$exepat%$ccmagenta&$ccend%3"
     return ${PIPESTATUS[0]}
 }
