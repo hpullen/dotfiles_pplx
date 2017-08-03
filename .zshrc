@@ -1,3 +1,6 @@
+# Reset zplugs
+zplugs=()
+
 # source global definitions
 ###do not remove the following lines###
 if [ -f /etc/zshrc ]; then
@@ -250,3 +253,125 @@ run()
     ./"$EXECUTABLE" "$@" 2>&1 | sed -E -e "/^Error / s%$errpat%$ccred&$ccend%" -e "/^#[0-9]+/ s%$funcpat%$ccblue&$ccend%" -e "/at $cpppat:[0-9]+$/ s%$cpppat%$ccgreen&$ccend%g" -e "/$cpppat/ s%$linepat%$ccmagenta&$ccend%" -e "/^Info in/ s%$errpat%$ccyellow&$ccend%" -e "/^#[0-9]+ / s%$mainpat%$ccblue&$ccend%" -e "/segmentation violation/ s%.*%$ccred&$ccend%"
     return ${PIPESTATUS[0]}
 }
+
+# Check jobs
+chj()
+{
+    # Set colour formatting
+    ccred=$(echo -e "\033[0;31m")
+    ccyellow=$(echo -e "\033[0;33m")
+    ccgreen=$(echo -e "\033[0;32m")
+    ccmagenta=$(echo -e "\033[0;35m")
+    ccpurple=$(echo -e "\033[0;95m")
+    ccblue=$(echo -e "\033[0;34m")
+    cccyan=$(echo -e "\033[0;36m")
+    ccorange=$(echo -e "\033[0;91m")
+    ccgrey=$(echo -e "\033[0;39m")
+    ccend=$(echo -e "\033[0m")
+
+    # Set surname to search
+    if [[ $# -eq 0 ]]
+    then
+        SURNAME="pullen"
+    else
+        if [[ $1 == "all" ]]
+        then
+            SURNAME=".*"
+        else 
+            SURNAME=$1
+        fi
+    fi
+
+    # Check whether jobs exist for the user
+    if [[ "$(qstat -ans | grep -c $SURNAME)" -eq 0 ]]
+    then
+        echo "No active jobs found for user "$ccorange$SURNAME$ccend
+        return ${PIPESTATUS[0]}
+    fi
+
+
+    # Print job status
+    qstat -ans | sed -n "4,5 p"
+    qstat -ans | sed -n "/$SURNAME/p" | sed -n "/^[0-9]/p" | \
+    sed -E -e "s/^[0-9]+/$ccmagenta&$ccend/g" | \
+    awk '{if (index($3, "test") != 0)
+          $3=cccyan $3 ccend; 
+          else if (index($3, "verysh") != 0) 
+          $3=ccgreen $3 ccend; 
+          else if (index($3, "normal") != 0)
+          $3=ccyellow $3 ccend;
+          else if (index($3, "long") != 0)
+          $3=ccorange $3 ccend;
+          else 
+          $3=ccgrey $3 ccend;
+          print}' ccgreen="$ccgreen" cccyan="$cccyan" ccyellow="$ccyellow" \
+              ccorange="$ccorange" ccgrey="$ccgrey" ccend="$ccend" | \
+    awk '{$9=ccpurple $9 ccend; print}' ccpurple="$ccpurple" ccend="$ccend" | \
+    awk '{if (index($11, "--") != 0) 
+          $11=ccgrey $11 ccend;
+          else
+          $11=ccblue $11 ccend; 
+          print}' ccblue="$ccblue" ccgrey="$ccgrey" ccend="$ccend" |\
+    awk '{if (index($10, "R") != 0)
+          $10=ccgreen $10 ccend;
+          else if (index($10, "Q") != 0)
+          $10=ccyellow $10 ccend;
+          print}' ccgreen="$ccgreen" ccyellow="$ccyellow" ccend="$ccend" | \
+      awk 'BEGIN{nums[1]=30; nums[2]=10; nums[3]=18; nums[4]=15; nums[5]=5; 
+          nums[6]=4; nums[7]=5; nums[8]=5; nums[9]=15; nums[10]=1; nums[11]=5;} 
+          {for (col = 1; col <= NF; col++) {
+              for (sp = length($col); sp <= nums[col]; sp++) {
+                  $col = $col " ";
+              }
+          } print;}' 
+    return ${PIPESTATUS[0]}
+}
+
+
+# Ignore accidental trailing characters in cd
+# cd() {
+    # # Deal with default cd to home
+    # if [[ $# -eq 0 ]]
+    # then
+        # builtin cd
+        # return ${PIPESTATUS[0]}
+    # fi
+
+    # # Deal with cd -
+    # if [[ $1 == "-" ]]
+    # then
+        # echo "cd - was chosen"
+        # builtin cd -
+    # fi
+
+    # # See if directory exists
+    # if [[ -d $1 ]]
+    # then
+        # builtin cd $1
+    # else
+
+        # # If not, see if directory above exists
+        # SHORTDIR=$(dirname $1)
+        # if [[ -d $SHORTDIR ]] && [[ $SHORTDIR != "./" ]]
+        # then
+            # echo "I assume you meant \"cd $(echo -e "\033[0;34m")$SHORTDIR/$(echo -e "\033[0m")\"..."
+            # builtin cd $SHORTDIR
+            # return ${PIPESTATUS[0]}
+        # fi
+
+        # # Print message if not found
+        # echo "Directory \"$(echo -e "\033[0;33m")$SHORTDIR$(echo -e "\033[0m")\" not found."
+    # fi
+    # return ${PIPESTATUS[0]}
+# }
+
+
+# Set up for custom completion options
+# fpath=(~/.zsh/completion $fpath)
+# fpath=$(echo "$fpath" | awk -v RS=':' -v ORS=":" '!a[$1]++')
+# export fpath
+# autoload -U compinit
+# compinit
+# zstyle ':completion:*' menu select=2
+
+
