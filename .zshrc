@@ -112,6 +112,9 @@ alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"
 # Unalias rm -i from common-aliases plugin
 unalias rm
 
+# Unalias gbd from git plugin (easily confused with gdb)
+unalias gbd
+
 # Get rid of history printing funciton
 unalias h
 
@@ -297,6 +300,8 @@ chj()
     awk '{if (index($3, "test") != 0)
           $3=cccyan $3 ccend; 
           else if (index($3, "verysh") != 0) 
+          $3=ccgreen $3 ccend; 
+          else if (index($3, "short") != 0) 
           $3=ccgreen $3 ccend; 
           else if (index($3, "normal") != 0)
           $3=ccyellow $3 ccend;
