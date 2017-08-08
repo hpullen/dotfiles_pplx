@@ -112,8 +112,9 @@ alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"
 # Unalias rm -i from common-aliases plugin
 unalias rm
 
-# Unalias gbd from git plugin (easily confused with gdb)
+# Modify/remove git aliases
 unalias gbd
+alias gst="git status -s"
 
 # Get rid of history printing funciton
 unalias h
