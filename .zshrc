@@ -334,6 +334,21 @@ chj()
 }
 
 
+# Function to delete job from list 
+delj() {
+    if [[ $# -eq 0 ]] 
+    then
+        echo Please provide a number.
+        return
+    fi
+
+    JOBNUM=$1
+    JOBID=$(qstat -ans | grep pullen | sed -n "$JOBNUM p" | grep -o '^[0-9]\+')
+    echo Deleting job with ID $JOBID:
+    chj | grep $JOBID
+}
+
+
 # Ignore accidental trailing characters in cd
 # cd() {
     # # Deal with default cd to home
