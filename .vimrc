@@ -172,6 +172,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Plugins
 " Vim-plug
 call plug#begin()
+" Tab completion
+Plug 'ervandew/supertab'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
@@ -214,6 +216,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'wellle/targets.vim'
 " Bullet points
 Plug 'dkarter/bullets.vim'
+" Visual split
+Plug 'wellle/visual-split.vim'
+" Easy window resizing
+Plug 'simeji/winresizer'
 call plug#end()
 
 " NERDcommenter settings
