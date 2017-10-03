@@ -65,7 +65,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)	
 
 # Display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="false"
 
 # Change the command execution time stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
@@ -73,7 +73,7 @@ HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(common-aliases git python pip tmux zsh-syntax-highlighting)
+plugins=(common-aliases git python pip tmux fast-syntax-highlighting solarized-man)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,6 +105,8 @@ alias del="rmtrash"
 alias logout="exit"
 alias make="make -j 10"
 alias open="fix_display && gnome-open"
+alias dirs="dirs -v"
+alias untar="tar -xvzf"
 
 # Remove all deleted files from git
 alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"
@@ -192,16 +194,28 @@ alias cpc='copyContents'
     #fi
 #}
 
-# LD_LIBRARY_PATH should include my libraries
-export LD_LIBRARY_PATH=/home/pullen/Library:$LD_LIBRARY_PATH
-
-# Path to Linuxbrew
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-
-# SimpleTools
+# LD_LIBRARY_PATH should include my libraries and simpletools
+if [[ $LD_LIBRARY_PATH != *"/pullen/Library"* ]]; then
+    export LD_LIBRARY_PATH=/home/pullen/Library:$LD_LIBRARY_PATH
+fi
 SIMPLETOOLS=$HOME/simpletools_2.0u 
-export LD_LIBRARY_PATH=$SIMPLETOOLS/lib:$LD_LIBRARY_PATH
-export PATH=$SIMPLETOOLS/bin:$PATH
+if [[ $LD_LIBRARY_PATH != *"simpletools"* ]]; then
+    export LD_LIBRARY_PATH=$SIMPLETOOLS/lib:$LD_LIBRARY_PATH
+fi
+
+# Paths to linuxbrew and simpletools
+path+=("$HOME/.linuxbrew/bin")
+path+=("$SIMPLETOOLS/bin")
+
+# Path to locally installed command line tools
+path+=("$HOME/install/bin")
+
+# Remove duplicate entries and export
+typeset -U path
+export PATH
+
+# Aliases for locally install tools
+alias diff="colordiff"
 
 # Clear screen
 clear && ls
@@ -347,6 +361,20 @@ delj() {
     echo Deleting job with ID $JOBID:
     chj | grep $JOBID
 }
+
+
+# Function to run last command with text changed
+rep() {
+    if [[ $# -ne 2 ]]
+    then
+        echo "Usage: rep expr1 expr2"
+        return
+    fi
+    LAST_COMMAND=$(echo `history | tail -1` | sed 's/[0-9]* //')
+    NEW_COMMAND=$(echo $LAST_COMMAND | sed "s/$1/$2/g")
+    eval $NEW_COMMAND
+}
+alias cdg="cd $GANGADIR"
 
 
 # Ignore accidental trailing characters in cd
