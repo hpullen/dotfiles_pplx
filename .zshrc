@@ -292,7 +292,7 @@ chj()
     else
         if [[ $1 == "all" ]]
         then
-            SURNAME=".*"
+            SURNAME="."
         else 
             SURNAME=$1
         fi
