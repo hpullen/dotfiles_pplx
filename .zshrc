@@ -12,9 +12,13 @@ else
 fi
 
 # Setup for LHCb
-if echo "$-" | grep i > /dev/null; then                                             
-    source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
-fi
+# if echo "$-" | grep i > /dev/null; then
+    # source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
+# fi
+# if [ "$LHCB_SETUP_DONE" != "true" ]; then
+    # source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
+    # export LHCB_SETUP_DONE="true"
+# fi
 
 # Source correct root
 #cd /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin
@@ -28,13 +32,6 @@ export EDITOR='vim'
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/pullen/.oh-my-zsh
-
-# Add analysis code directory to CDPATH
-export CDPATH=/home/pullen/analysis/tuple_scripts/analysis_code/
-
-# Current working directory
-alias cwd=~/analysis/tuple_scripts/plot_histos/partially_reconstructed_background/Code
-hash cwd=~/analysis/data_HT/tuple_scripts/plot_histos/partially_reconstructed_background
 
 # Set name of the theme to load.
 POWERLEVEL9K_MODE='awesome-fontconfig'
@@ -221,7 +218,7 @@ alias diff="colordiff"
 clear && ls
 
 # Colour function for make
-make()
+colormake()
 {
     pathpat="^.*:[0-9]+"
     # cpppat="<w+\.cpp>"
@@ -247,6 +244,7 @@ make()
 
     return ${PIPESTATUS[0]}
 }
+alias make="colormake"
 
 # Colour function for running executables
 run()
@@ -375,52 +373,4 @@ rep() {
     eval $NEW_COMMAND
 }
 alias cdg="cd $GANGADIR"
-
-
-# Ignore accidental trailing characters in cd
-# cd() {
-    # # Deal with default cd to home
-    # if [[ $# -eq 0 ]]
-    # then
-        # builtin cd
-        # return ${PIPESTATUS[0]}
-    # fi
-
-    # # Deal with cd -
-    # if [[ $1 == "-" ]]
-    # then
-        # echo "cd - was chosen"
-        # builtin cd -
-    # fi
-
-    # # See if directory exists
-    # if [[ -d $1 ]]
-    # then
-        # builtin cd $1
-    # else
-
-        # # If not, see if directory above exists
-        # SHORTDIR=$(dirname $1)
-        # if [[ -d $SHORTDIR ]] && [[ $SHORTDIR != "./" ]]
-        # then
-            # echo "I assume you meant \"cd $(echo -e "\033[0;34m")$SHORTDIR/$(echo -e "\033[0m")\"..."
-            # builtin cd $SHORTDIR
-            # return ${PIPESTATUS[0]}
-        # fi
-
-        # # Print message if not found
-        # echo "Directory \"$(echo -e "\033[0;33m")$SHORTDIR$(echo -e "\033[0m")\" not found."
-    # fi
-    # return ${PIPESTATUS[0]}
-# }
-
-
-# Set up for custom completion options
-# fpath=(~/.zsh/completion $fpath)
-# fpath=$(echo "$fpath" | awk -v RS=':' -v ORS=":" '!a[$1]++')
-# export fpath
-# autoload -U compinit
-# compinit
-# zstyle ':completion:*' menu select=2
-
 

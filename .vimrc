@@ -203,8 +203,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
 " Buffer closing without closing window (use :Bd)
 Plug 'moll/vim-bbye'
-" Rainbow parentheses
-Plug 'junegunn/rainbow_parentheses.vim'
 " Better incremental searching
 Plug 'haya14busa/incsearch.vim'
 " Easy aligning
