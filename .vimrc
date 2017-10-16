@@ -101,6 +101,7 @@ augroup filetype_C
     autocmd FileType c,cpp noremap <buffer> <silent> <leader>3 I//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
     autocmd FileType c,cpp noremap <buffer> <silent> <leader>4 kddjddk^3xI//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
     autocmd FileType c,cpp noremap <buffer> <silent> <leader>5 Istd::cout<space><<<space>"<esc>A"<space><<<space>std::endl;<esc>
+    autocmd FileType c,cpp setlocal commentstring=//\ %s
 augroup END
 
 " Strip all trailing whitespace with \W
@@ -173,10 +174,14 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Plugins
 " Vim-plug
 call plug#begin()
+" Tetris
+Plug 'vim-scripts/TeTrIs.vim'
+" Comments
+Plug 'tpope/vim-commentary'
 " Tab completion
 Plug 'ervandew/supertab'
-" NerdCommenter autocommenting
-Plug 'scrooloose/nerdcommenter'
+" " NerdCommenter autocommenting
+" Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
 " Airline
@@ -221,13 +226,13 @@ Plug 'wellle/visual-split.vim'
 Plug 'simeji/winresizer'
 call plug#end()
 
-" NERDcommenter settings
-" Add spaces after comment delimiter by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for multiline comments
-let g:NERDCompactSexyComs = 1
-" Trim trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+" " NERDcommenter settings
+" " Add spaces after comment delimiter by default
+" let g:NERDSpaceDelims = 1
+" " Use compact syntax for multiline comments
+" let g:NERDCompactSexyComs = 1
+" " Trim trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
 
 " Open NERDTree with ctrl-n
 noremap <C-n> :NERDTreeToggle<CR>
