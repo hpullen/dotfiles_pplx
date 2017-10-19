@@ -44,22 +44,32 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_beginning"
 POWERLEVEL9K_STATUS_VERBOSE="FALSE"
 # Colours for dir
 POWERLEVEL9K_DIR_HOME_BACKGROUND="cyan"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="black"
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="cyan"
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="cyan"
+POWERLEVEL9K_DIR_SHOW_WRITABLE="true"
 # Colours for OS icon
 POWERLEVEL9K_OS_ICON_BACKGROUND="white"
 POWERLEVEL9K_OS_ICON_FOREGROUND="black"
-# # VCS COLOURS
-# POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
-# POWERLEVEL9K_VCS_CLEAN_FOREGROUND="black"
-# POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="yellow"
-# POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="black"
-# Time format
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
-# Left prompt: os icon, current directory
+# POWERLEVEL9K_USER_DEFAULT_BACKGROUND="white"
+# POWERLEVEL9K_USER_DEFAULT_FOREGROUND="002"
+# # # VCS COLOURS
+# # POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
+# # POWERLEVEL9K_VCS_CLEAN_FOREGROUND="black"
+# # POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="yellow"
+# # POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="black"
+# Segment separators
+# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\ue0b4"
+# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\ue0b6"
+POWERLEVEL9K_SSH_ICON="\uF489"
+POWERLEVEL9K_USER_ICON="\uf007"
+# # Time format
+POWERLEVEL9K_TIME_FORMAT="\uf017 %D{%H:%M} \uf073 %D{%d/%m/%y}"
+# # POWERLEVEL9K_TIME_ICON="\uf017"
+# # Left prompt: os icon, current directory
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir)
 # Right prompt: return status of last command, battery level, time
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)	
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs host time)
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
@@ -70,7 +80,7 @@ HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(common-aliases git python pip tmux fast-syntax-highlighting solarized-man)
+plugins=(common-aliases git python pip tmux fast-syntax-highlighting solarized-man fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 

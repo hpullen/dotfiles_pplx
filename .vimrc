@@ -224,6 +224,8 @@ Plug 'dkarter/bullets.vim'
 Plug 'wellle/visual-split.vim'
 " Easy window resizing
 Plug 'simeji/winresizer'
+" Vim devicons
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " " NERDcommenter settings
