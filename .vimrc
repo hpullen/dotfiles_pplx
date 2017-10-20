@@ -176,12 +176,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 call plug#begin()
 " Tetris
 Plug 'vim-scripts/TeTrIs.vim'
-" Comments
-Plug 'tpope/vim-commentary'
+" " Comments
+" Plug 'tpope/vim-commentary'
 " Tab completion
 Plug 'ervandew/supertab'
-" " NerdCommenter autocommenting
-" Plug 'scrooloose/nerdcommenter'
+" NerdCommenter autocommenting
+Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
 " Airline
@@ -226,6 +226,8 @@ Plug 'wellle/visual-split.vim'
 Plug 'simeji/winresizer'
 " Vim devicons
 Plug 'ryanoasis/vim-devicons'
+" NERDtree syntax highlighting
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
 
 " " NERDcommenter settings
@@ -322,3 +324,25 @@ let g:bullets_enabled_file_types = [
     \ 'scratch',
     \ 'tex'
      \]
+
+" Devicons settings
+" Pattern matches
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.e\d\+'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.o\d\+'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.tar\.gz'] = ''
+" Exact filename matches
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['makefile'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
+" Custom extensions
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cut'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['param'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['o'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['root'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
+" Limit syntax highlighting in NERDTree (speeds it up)
+let g:NERDTreeLimitedSyntax = 1
