@@ -101,18 +101,18 @@ autoload -U zmv
 autoload -Uz zcalc
 
 # GNU ls colours
-eval `dircolors ~/clone/dircolors-solarized/dircolors.ansi-dark`
+eval `dircolors ~/.dircolors/dircolors.ansi-dark`
 # Use in tab completion in zsh
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # General aliases
 alias zshrc="vim ~/.zshrc"
-alias sourcez="source ~/.zshrc"
+alias zr="source ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
-alias ls="ls --color=auto"
+alias ls="ls --color=auto --group-directories-first"
 alias la="ls -a --color=auto"
 alias ll="ls -lh --color=auto"
-alias c="clear"
+alias lt="/bin/ls -ltFh --colo=auto"
 alias cls="clear && ls --color=auto"	
 alias del="rmtrash"
 alias logout="exit"
@@ -120,7 +120,7 @@ alias make="make -j 10"
 alias open="fix_display && gnome-open"
 alias dirs="dirs -v"
 alias untar="tar -xvzf"
-alias blame="cd ~/from_others && ./qstat_blame.py && cd -"
+alias blame="cd ~/Downloads/from_others && ./qstat_blame.py && cd -"
 
 # Remove all deleted files from git
 alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"
