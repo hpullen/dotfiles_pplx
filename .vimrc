@@ -166,8 +166,10 @@ augroup END
 function! ToggleStatus()
     if &laststatus
         set laststatus=0
+        set showtabline=0
     else 
         set laststatus=2
+        setsetowtabline=1
     endif
 endfunction
 nnoremap <silent> <leader>tt :call ToggleStatus()<CR>
