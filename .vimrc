@@ -114,6 +114,11 @@ set pastetoggle=<F3>
 nnoremap <silent> <Left> :bprevious<CR>
 nnoremap <silent> <Right> :bnext<CR>
 
+" Tab browsing
+nnoremap <silent> <C-[> :tabprev<CR>
+nnoremap <silent> <C-]> :tabnext<CR>
+nnoremap <silent> <C-n> :tabnew<CR>
+
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
@@ -157,6 +162,16 @@ augroup filetype_python
     autocmd Filetype python setlocal nosmartindent
 augroup END
 
+" Toggle status 
+function! ToggleStatus()
+    if &laststatus
+        set laststatus=0
+    else 
+        set laststatus=2
+    endif
+endfunction
+nnoremap <silent> <leader>tt :call ToggleStatus()<CR>
+
 " Colourscheme
 set background=dark
 colorscheme solarized
@@ -184,10 +199,12 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
-" Airline
-Plug 'vim-airline/vim-airline'
-" Airline themes
-Plug 'vim-airline/vim-airline-themes'
+"" Airline
+"Plug 'vim-airline/vim-airline'
+"" Airline themes
+"Plug 'vim-airline/vim-airline-themes'
+" Lighter status bar
+Plug 'itchyny/lightline.vim'
 " Syntastic
 Plug 'vim-syntastic/syntastic'
 " Fugitive
@@ -228,6 +245,8 @@ Plug 'simeji/winresizer'
 Plug 'ryanoasis/vim-devicons'
 " NERDtree syntax highlighting
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Distraction-free writing environment
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " " NERDcommenter settings
@@ -239,21 +258,15 @@ call plug#end()
 " let g:NERDTrimTrailingWhitespace = 1
 
 " Open NERDTree with ctrl-n
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " Open undotree with \u
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 " Airline settings
 set laststatus=2
-" Use powerline fonts
-let g:airline_powerline_fonts=1
-" Solarized colorscheme for airline
-let g:airline_theme = 'solarized'
-" Show buffers/tabs at top
-let g:airline#extensions#tabline#enabled=1
-" Show filename only in buffer/tab display
-let g:airline#extensions#tabline#fnamemod = ':t'
+set noshowmode
+let g:lightline = {'colorscheme': 'solarized'}
 
 " CtrlP settings
 " Mappings
@@ -346,3 +359,20 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
 " Limit syntax highlighting in NERDTree (speeds it up)
 let g:NERDTreeLimitedSyntax = 1
+
+" Colour modifications
+function! s:highlight()
+    hi VertSplit ctermfg=0 ctermbg=0
+    hi EndOfBuffer cterm=bold ctermfg=0
+    hi SignColumn ctermbg=8
+    hi GitGutterAdd ctermbg=8 ctermfg=2
+    hi GitGutterChange ctermbg=8 ctermfg=3
+    hi GitGutterDelete ctermbg=8 ctermfg=1
+    hi GitGutterChangeDelete ctermbg=8 ctermfg=1
+    hi LineNr ctermbg=8 ctermfg=10 
+endfunction
+augroup my_highlights
+    autocmd!
+    autocmd ColorScheme * call s:highlight()
+augroup end
+call s:highlight()

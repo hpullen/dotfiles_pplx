@@ -86,7 +86,7 @@ HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(common-aliases git python pip tmux fast-syntax-highlighting solarized-man fancy-ctrl-z)
+plugins=(common-aliases git pip tmux fast-syntax-highlighting solarized-man fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,6 +120,7 @@ alias make="make -j 10"
 alias open="fix_display && gnome-open"
 alias dirs="dirs -v"
 alias untar="tar -xvzf"
+alias blame="cd ~/from_others && ./qstat_blame.py && cd -"
 
 # Remove all deleted files from git
 alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"
