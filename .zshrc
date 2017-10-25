@@ -75,7 +75,7 @@ POWERLEVEL9K_TIME_BACKGROUND="none"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir)
 
 # Right prompt: return status of last command, battery level, time
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs host time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
@@ -114,6 +114,7 @@ alias la="ls -a --color=auto"
 alias ll="ls -lh --color=auto"
 alias lt="/bin/ls -ltFh --colo=auto"
 alias cls="clear && ls --color=auto"	
+alias c="clear"
 alias del="rmtrash"
 alias logout="exit"
 alias make="make -j 10"
@@ -121,6 +122,7 @@ alias open="fix_display && gnome-open"
 alias dirs="dirs -v"
 alias untar="tar -xvzf"
 alias blame="cd ~/Downloads/from_others && ./qstat_blame.py && cd -"
+alias grep="grep -i -I --color"
 
 # Remove all deleted files from git
 alias git_rm_all="git ls-files --deleted -z | xargs -0 git rm"

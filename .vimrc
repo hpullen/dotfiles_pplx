@@ -44,12 +44,6 @@ set t_Co=256
 set splitright
 set splitbelow
 
-" Map alt + hjkl to split movements
-nnoremap ∆ <C-w>j
-nnoremap ˚ <C-w>k
-nnoremap ˙ <C-w>h
-nnoremap ¬ <C-w>l
-
 " Make Y behave like C and D (yank to end of line)
 nnoremap Y y$
 
@@ -113,11 +107,6 @@ set pastetoggle=<F3>
 " Remap left and right to browse buffers in normal mode
 nnoremap <silent> <Left> :bprevious<CR>
 nnoremap <silent> <Right> :bnext<CR>
-
-" Tab browsing
-nnoremap <silent> <C-[> :tabprev<CR>
-nnoremap <silent> <C-]> :tabnext<CR>
-nnoremap <silent> <C-n> :tabnew<CR>
 
 " Move vertically by visual line
 nnoremap j gj
@@ -328,9 +317,6 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-" Toggle rainbow parentheses (in style of Unimpaired)
-map cop :RainbowParentheses!!<CR>
-
 " Filetypes to use Bullets.vim
 let g:bullets_enabled_file_types = [
     \ 'markdown',
@@ -365,7 +351,7 @@ let g:NERDTreeLimitedSyntax = 1
 " Colour modifications
 function! s:highlight()
     hi VertSplit ctermfg=0 ctermbg=0
-    hi EndOfBuffer cterm=bold ctermfg=0
+    hi EndOfBuffer ctermfg=8
     hi SignColumn ctermbg=8
     hi GitGutterAdd ctermbg=8 ctermfg=2
     hi GitGutterChange ctermbg=8 ctermfg=3
