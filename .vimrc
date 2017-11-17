@@ -149,6 +149,13 @@ augroup filetype_python
     autocmd!
     autocmd Filetype python nnoremap <buffer><silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
     autocmd Filetype python setlocal nosmartindent
+    autocmd Filetype python setlocal textwidth=0
+augroup END
+
+" No line wrapping in snakefiles
+augroup filetype_snakemake
+    autocmd!
+    autocmd Filetype snakemake setlocal textwidth=0
 augroup END
 
 " Toggle status 
@@ -209,7 +216,7 @@ Plug 'tpope/vim-abolish'
 " Repeat for tpope plugins
 Plug 'tpope/vim-repeat'
 " Automatic bracket closing
-Plug 'raimondi/delimitmate'
+"Plug 'raimondi/delimitmate'
 " Fuzzy file search
 Plug 'ctrlpvim/ctrlp.vim'
 " Undo visualization
@@ -238,6 +245,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Distraction-free writing environment
 Plug 'junegunn/goyo.vim'
+" Rainbow parentheses
+Plug 'luochen1990/rainbow'
 call plug#end()
 
 " " NERDcommenter settings
@@ -287,8 +296,8 @@ let g:syntastic_loc_list_height=4
 nnoremap <leader>s :SyntasticToggleMode<CR>
 
 " Still autoindent with delimitmate
-let delimitMate_expand_cr = 1
-let delimirMate_expand_space = 1
+"let delimitMate_expand_cr = 1
+"let delimirMate_expand_space = 1
 
 " Sneak remappings
 map + <Plug>Sneak_s
@@ -364,3 +373,6 @@ augroup my_highlights
     autocmd ColorScheme * call s:highlight()
 augroup end
 call s:highlight()
+
+" Rainbow parentheses off by default
+let g:rainbow_active = 0

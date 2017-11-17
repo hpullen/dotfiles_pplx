@@ -11,19 +11,15 @@ else
   
 fi
 
-# Setup for LHCb
-# if echo "$-" | grep i > /dev/null; then
-    # source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
-# fi
-# if [ "$LHCB_SETUP_DONE" != "true" ]; then
-    # source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
-    # export LHCB_SETUP_DONE="true"
-# fi
+## Setup for LHCb
+ #if echo "$-" | grep i > /dev/null; then
+     #source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
+ #fi
 
 # Source correct root
-#cd /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin
-#source thisroot.sh
-#cd
+cd /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin
+source thisroot.sh
+cd -
 #source /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin/thisroot.sh
 
 # Export environment variables
@@ -34,7 +30,13 @@ export EDITOR='vim'
 export ZSH=/home/pullen/.oh-my-zsh
 
 # Set name of the theme to load.
-POWERLEVEL9K_MODE='awesome-fontconfig'
+IP_ADDRESS=`echo $SSH_CLIENT | awk '{print $1}'`
+#if [[ "$IP_ADDRESS" = "128.141.59.8" ]]; then
+if [[ 1 = 1 ]]; then
+    POWERLEVEL9K_MODE='awesome-fontconfig'
+else 
+    POWERLEVEL9K_MODE='default'
+fi
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # PowerLevel9k settings
@@ -57,25 +59,27 @@ POWERLEVEL9K_OS_ICON_BACKGROUND="none"
 POWERLEVEL9K_OS_ICON_FOREGROUND="default"
 
 # Separators
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='%F{default}  '
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
 POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%F{default}|'
 POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{default}|'
 
-# SSH icons
-POWERLEVEL9K_SSH_ICON="\uF489"
-POWERLEVEL9K_USER_ICON="\uf007"
-
 # Time format
-POWERLEVEL9K_TIME_FORMAT="\uf017 %D{%H:%M} \uf073 %D{%d/%m/%y}"
 POWERLEVEL9K_TIME_FOREGROUND="default"
 POWERLEVEL9K_TIME_BACKGROUND="none"
+
+# Conda environent format
+POWERLEVEL9K_ANACONDA_BACKGROUND="none"
+POWERLEVEL9K_ANACONDA_FOREGROUND="green"
+POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=""
+POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=""
+POWERLEVEL9K_PYTHON_ICON=""
 
 # Left prompt: os icon, current directory
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir)
 
 # Right prompt: return status of last command, battery level, time
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda)
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
@@ -83,6 +87,18 @@ COMPLETION_WAITING_DOTS="false"
 # Change the command execution time stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="dd/mm/yyyy"
+
+# Fancy font stuff for ssh from laptop only
+#if [[ "$IP_ADDRESS" = "128.141.59.8" ]]; then
+if [[ 1 = 1 ]]; then
+    # End of prompt
+    POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='%F{default}  '
+    # Time format with icons
+    POWERLEVEL9K_TIME_FORMAT="\uf017 %D{%H:%M}  \uf073 %D{%d/%m/%y}"
+else 
+    POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='%F{default} $ '
+    POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} | %D{%d/%m/%y}"
+fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -219,12 +235,11 @@ if [[ $LD_LIBRARY_PATH != *"simpletools"* ]]; then
     export LD_LIBRARY_PATH=$SIMPLETOOLS/lib:$LD_LIBRARY_PATH
 fi
 
-# Paths to linuxbrew and simpletools
+# Paths to local installations
+path+=("$HOME/.local/bin")
 path+=("$HOME/.linuxbrew/bin")
 path+=("$SIMPLETOOLS/bin")
-
-# Path to locally installed command line tools
-path+=("$HOME/install/bin")
+path+=("$HOME/miniconda3/bin")
 
 # Remove duplicate entries and export
 typeset -U path
@@ -235,35 +250,6 @@ alias diff="colordiff"
 
 # Clear screen
 clear && ls
-
-# Colour function for make
-colormake()
-{
-    pathpat="^.*:[0-9]+"
-    # cpppat="<w+\.cpp>"
-    cpppat="src.*\.cpp\>"
-    objpat="obj.*\.o\>"
-    exepat="\<\w*\>"
-    incpat="-I[^ ]*\>"
-    libpat=" -l[^ ]*\>"
-    libpat2=" [^ ]*\.so\>"
-    btpat=' `.*`'
-
-    ccred=$(echo -e "\033[0;31m")
-    ccyellow=$(echo -e "\033[0;33m")
-    ccgreen=$(echo -e "\033[0;32m")
-    ccmagenta=$(echo -e "\033[0;35m")
-    ccpurple=$(echo -e "\033[0;95m")
-    ccblue=$(echo -e "\033[0;34m")
-    cccyan=$(echo -e "\033[0;36m")
-    ccorange=$(echo -e "\033[0;91m")
-    ccend=$(echo -e "\033[0m")
-
-    /usr/bin/make -j 10 "$@" 2>&1 | sed -E -e "/[Ee]rror[: ]/ s%$pathpat%$ccred&$ccend%g" -e "/[Ww]arning[: ]/ s%$pathpat%$ccyellow&$ccend%g" -e "/^g\+\+ -c/ s%$cpppat%$ccgreen&$ccend%g" -e "/^g\+\+/ s%$objpat%$ccpurple&$ccend%g" -e "/^g\+\+ -o/ s%$exepat%$ccmagenta&$ccend%3" -e "s%$libpat%$cccyan&$ccend%g" -e "s%$libpat2%$cccyan&$ccend%g" -e "s%$incpat%$ccblue&$ccend%g" -e "s%$btpat%$ccorange&$ccend%g" -e "/[Ee]rror[: ]/,+2 s%\^%$ccred&$ccend%g" -e "/[Ww]arning[: ]/,+2 s%\^%$ccyellow&$ccend%g"
-
-    return ${PIPESTATUS[0]}
-}
-alias make="colormake"
 
 # Colour function for running executables
 run()
@@ -392,5 +378,9 @@ rep() {
     eval $NEW_COMMAND
 }
 alias cdg="cd $GANGADIR"
+
+# Source custom functions
+source ~/.custom_functions/subdir.sh
+alias make="colormake"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
