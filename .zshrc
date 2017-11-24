@@ -210,7 +210,7 @@ function delAllExcept {
     mv ../$FILENAME .
 }
 # Mark the location of a directory to return to later
-function mark { export $1="`pwd`"; }
+#function mark { export $1="`pwd`"; }
 # Reload directory if it has broken (e.g. due to closed ssh connection)
 function reloadDir { 
     cwd="`pwd`"
