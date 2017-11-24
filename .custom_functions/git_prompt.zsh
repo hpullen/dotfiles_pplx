@@ -81,20 +81,6 @@ function git_branch_is_pushed() {
     fi
 }
 
-function git_not_ahead() {
-    if in_git_repos; then
-        local lines=$(( git_commits_ahead))
-        test $lines = 0
-    fi
-}
-
-function git_not_behind() {
-    if in_git_repos; then
-        local lines=$(( git_commits_behind ))
-        test $lines = 0
-    fi
-}
-
 #-----------------------------------------------------------------------------
 
 function git_prompt_precmd() {
@@ -118,10 +104,10 @@ function git_prompt_precmd() {
         if ! git_stash_is_clean; then
             GITINFO="${GITINFO}  `git_number_of_stashes`"
         fi
-        if ! git_not_ahead; then
+        if [[ $(( $(git_commits_ahead) )) -ne 0 ]]; then
             GITINFO="${GITINFO}  `git_commits_ahead`"
         fi
-        if ! git_not_behind; then
+        if [[ $(( $(git_commits_behind) )) -ne 0 ]]; then
             gitinfo="${gitinfo}  `git_commits_behind`"
         fi
             #GITINFO="${GITINFO}⌥"
