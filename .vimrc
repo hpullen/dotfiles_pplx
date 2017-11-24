@@ -56,7 +56,6 @@ vnoremap <silent> <leader>y :w! ~/.vim.clipboard<CR>
 " Split line with K
 nnoremap K i<CR><ESC>
 vnoremap K k
-
 " Split line and add quotes with \k and \j
 nnoremap <leader>k i"<CR>"<ESC>
 nnoremap <leader>j i'<CR>'<ESC>
