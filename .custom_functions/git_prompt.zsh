@@ -101,9 +101,9 @@ function git_prompt_precmd() {
     local GITINFO=""
     if [ ! -z `git_current_branch` ]; then
         if ! git_status_is_clean; then
-            GITINFO="%{$fg[yellow]%} "
+            GITINFO="%{$fg[yellow]%}  "
         else 
-            GITINFO="%{$fg[green]%} "
+            GITINFO="%{$fg[green]%}  "
         fi
         GITINFO="${GITINFO}`git_current_branch`"
         if ! git_staged_files; then
