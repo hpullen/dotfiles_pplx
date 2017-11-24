@@ -390,6 +390,3 @@ source ~/.custom_functions/subdir.sh
 alias make="colormake"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Custom git prompt icons
-ZSH_THEME_GIT_PROMPT_PREFIX=" "

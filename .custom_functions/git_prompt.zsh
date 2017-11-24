@@ -88,20 +88,23 @@ function git_prompt_precmd() {
     local GITINFO=""
     if [ ! -z `git_current_branch` ]; then
         if ! git_status_is_clean; then
-            GITINFO="%{$fg[yellow]%}  "
+            GITINFO="%{$fg[yellow]%} "
         else 
-            GITINFO="%{$fg[green]%}  "
+            GITINFO="%{$fg[green]%} "
         fi
         GITINFO="${GITINFO}`git_current_branch`"
-        #if ! git_unknown_files; then
-            #GITINFO="${GITINFO}?"
-        #fi
-        #if ! git_branch_is_pushed; then
-            #GITINFO="$GITINFO➚"
-        #fi
-        #if ! git_stash_is_clean; then
-            #GITINFO="$GITINFO☰"
-        #fi
+        if ! git_staged_files; then
+            GITINFO="${GITINFO} "
+        fi
+        if ! git_modified_files; then
+            GITINFO="${GITINFO} "
+        fi
+        if ! git_unknown_files; then
+            GITINFO="${GITINFO} "
+        fi
+        if ! git_stash_is_clean; then
+            GITINFO="${GITINFO} "
+        fi
         #if ! git_no_branches; then
             #GITINFO="${GITINFO}⌥"
         #fi
