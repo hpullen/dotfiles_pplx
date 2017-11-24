@@ -83,17 +83,17 @@ function git_branch_is_pushed() {
 
 function git_not_ahead() {
     if in_git_repos; then
-        local lines=$(git_commits_ahead)
+        local lines=$(( git_commits_ahead))
         test $lines = 0
     fi
 }
 
-#function git_not_behind() {
-    #if in_git_repos; then
-        #local lines=$(git_commits_behind)
-        #test $lines = 0
-    #fi
-#}
+function git_not_behind() {
+    if in_git_repos; then
+        local lines=$(( git_commits_behind ))
+        test $lines = 0
+    fi
+}
 
 #-----------------------------------------------------------------------------
 
@@ -121,10 +121,9 @@ function git_prompt_precmd() {
         if ! git_not_ahead; then
             GITINFO="${GITINFO}  `git_commits_ahead`"
         fi
-        #if ! git_not_behind; then
-            #GITINFO="${GITINFO}  `git_commits_behind`"
-        #fi
-        #if ! git_no_branches; then
+        if ! git_not_behind; then
+            gitinfo="${gitinfo}  `git_commits_behind`"
+        fi
             #GITINFO="${GITINFO}⌥"
         #fi
         #if ! git_single_remote; then
