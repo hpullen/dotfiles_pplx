@@ -159,6 +159,9 @@ alias gst="git status -s"
 # Get rid of history printing funciton
 unalias h
 
+# Don't use GUI for git push
+unset SSH_ASKPASS
+
 # LHCb aliases
 alias root="fix_display && root -l"
 alias proxyinit="lb-run LHCbDIRAC lhcb-proxy-init"
