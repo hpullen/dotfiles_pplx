@@ -87,26 +87,28 @@ function git_branch_is_pushed() {
 function git_prompt_precmd() {
     local GITINFO=""
     if [ ! -z `git_current_branch` ]; then
-        GITINFO=" [`git_current_branch`"
         if ! git_status_is_clean; then
-            GITINFO="%{$fg[yellow]%} `git_current_branch`"
+            GITINFO="%{$fg[yellow]%}  "
+        else 
+            GITINFO="%{$fg[green]%}  "
         fi
-        if ! git_unknown_files; then
-            GITINFO="${GITINFO}?"
-        fi
-        if ! git_branch_is_pushed; then
-            GITINFO="$GITINFO➚"
-        fi
-        if ! git_stash_is_clean; then
-            GITINFO="$GITINFO☰"
-        fi
-        if ! git_no_branches; then
-            GITINFO="${GITINFO}⌥"
-        fi
-        if ! git_single_remote; then
-            GITINFO="$GITINFO®"
-        fi
-        GITINFO="$GITINFO]"
+        GITINFO="${GITINFO}`git_current_branch`"
+        #if ! git_unknown_files; then
+            #GITINFO="${GITINFO}?"
+        #fi
+        #if ! git_branch_is_pushed; then
+            #GITINFO="$GITINFO➚"
+        #fi
+        #if ! git_stash_is_clean; then
+            #GITINFO="$GITINFO☰"
+        #fi
+        #if ! git_no_branches; then
+            #GITINFO="${GITINFO}⌥"
+        #fi
+        #if ! git_single_remote; then
+            #GITINFO="$GITINFO®"
+        #fi
+        #GITINFO="$GITINFO]"
     fi
     echo $GITINFO
 }
