@@ -85,7 +85,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir custom_git)
 
 # Right prompt: return status of last command, battery level, time
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs anaconda)
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
