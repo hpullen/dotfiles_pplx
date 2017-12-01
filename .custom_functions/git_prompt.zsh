@@ -98,9 +98,9 @@ function git_prompt_precmd() {
         if ! git_modified_files; then
             GITINFO="${GITINFO} "
         fi
-        #if ! git_unknown_files; then
-            #GITINFO="${GITINFO} "
-        #fi
+        if ! git_unknown_files; then
+            GITINFO="${GITINFO} "
+        fi
         #if ! git_stash_is_clean; then
             #GITINFO="${GITINFO}  `git_number_of_stashes`"
         #fi
