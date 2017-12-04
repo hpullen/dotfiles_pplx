@@ -248,6 +248,8 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'junegunn/goyo.vim'
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
+" Improvements to quickfix window
+Plug 'romainl/vim-qf'
 call plug#end()
 
 " " NERDcommenter settings
