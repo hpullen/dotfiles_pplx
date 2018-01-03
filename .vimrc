@@ -140,7 +140,7 @@ augroup END
 " Vim file autocommands
 augroup filetype_vim
     autocmd!
-    autocmd FileType vim setlocal shortmess+=c
+    "autocmd FileType vim setlocal shortmess+=c
     autocmd FileType vim setlocal textwidth=0
     autocmd FileType vim setlocal wrap
 augroup END
@@ -188,8 +188,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Plugins
 " Vim-plug
 call plug#begin()
-" Tetris
-Plug 'vim-scripts/TeTrIs.vim'
+"" Tetris
+"Plug 'vim-scripts/TeTrIs.vim'
 " " Comments
 " Plug 'tpope/vim-commentary'
 " Tab completion
@@ -198,16 +198,12 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
-"" Airline
-"Plug 'vim-airline/vim-airline'
-"" Airline themes
-"Plug 'vim-airline/vim-airline-themes'
-" Lighter status bar
+" Status bar
 Plug 'itchyny/lightline.vim'
 " Syntastic
 Plug 'vim-syntastic/syntastic'
-" Fugitive
-Plug 'tpope/vim-fugitive'
+"" Fugitive
+"Plug 'tpope/vim-fugitive'
 " Gitgutter
 Plug 'airblade/vim-gitgutter'
 " Surround
@@ -236,8 +232,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'wellle/targets.vim'
 " Bullet points
 Plug 'dkarter/bullets.vim'
-" Visual split
-Plug 'wellle/visual-split.vim'
+"" Visual split
+"Plug 'wellle/visual-split.vim'
 " Easy window resizing
 Plug 'simeji/winresizer'
 " Vim devicons
@@ -250,15 +246,33 @@ Plug 'junegunn/goyo.vim'
 Plug 'luochen1990/rainbow'
 " Improvements to quickfix window
 Plug 'romainl/vim-qf'
+"" Better cpp syntax highlighting
+"Plug 'octol/vim-cpp-enhanced-highlight'
+" Visual indentation
+Plug 'Yggdroot/indentLine'
+" " Templates for filetypes
+" Plug 'noahfrederick/vim-skeleton'
 call plug#end()
 
-" " NERDcommenter settings
-" " Add spaces after comment delimiter by default
-" let g:NERDSpaceDelims = 1
-" " Use compact syntax for multiline comments
-" let g:NERDCompactSexyComs = 1
-" " Trim trailing whitespace when uncommenting
-" let g:NERDTrimTrailingWhitespace = 1
+" Vundle (needed for YouCompleteMe)
+" filetype off
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+" Plugin 'VundleVim/Vundle.vim'
+" " YouCompleteMe autocompleter
+" Plugin 'Valloric/YouCompleteMe'
+" "" Colour coding for C family languages
+" "Plugin 'jeaye/color_coded'
+" call vundle#end()
+" filetype plugin indent on
+
+ " NERDcommenter settings
+ " Add spaces after comment delimiter by default
+ let g:NERDSpaceDelims = 1
+ " Use compact syntax for multiline comments
+ let g:NERDCompactSexyComs = 1
+ " Trim trailing whitespace when uncommenting
+ let g:NERDTrimTrailingWhitespace = 1
 
 " Open NERDTree with ctrl-n
 noremap <silent> <leader>n :NERDTreeToggle<CR>
@@ -379,3 +393,10 @@ call s:highlight()
 
 " Rainbow parentheses off by default
 let g:rainbow_active = 0
+
+"" Enhanced C++ syntax highlighting
+"let g:cpp_class_scope_highlight = 1
+
+" Indent lines
+let g:indentLine_color_term = 0
+let g:indentLine_char = '|'

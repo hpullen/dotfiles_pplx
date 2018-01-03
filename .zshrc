@@ -395,5 +395,5 @@ alias make="colormake"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # EvtGen stuff
-LD_LIBRARY_PATH=/home/pullen/RapidSim/EvtGen/external/HepMC/lib:/home/pullen/RapidSim/EvtGen/external/pythia8230/lib:/home/pullen/RapidSim/EvtGen/external/PHOTOS/lib:/home/pullen/RapidSim/EvtGen/external/TAUOLA/lib:/home/pullen/RapidSim/EvtGen/evtgen/lib:$LD_LIBRARY_PATH
-PYTHIA8DATA=/home/pullen/RapidSim/EvtGen/external/pythia8230/share/Pythia8/xmldoc
+export LD_LIBRARY_PATH=/home/pullen/RapidSim/Attempt/EvtGen/external/HepMC/lib:/home/pullen/RapidSim/Attempt/EvtGen/external/pythia8230/lib:/home/pullen/RapidSim/Attempt/EvtGen/external/PHOTOS/lib:/home/pullen/RapidSim/Attempt/EvtGen/external/TAUOLA/lib:/home/pullen/RapidSim/Attempt/EvtGen/evtgen/lib:$LD_LIBRARY_PATH
+export PYTHIA8DATA=/home/pullen/RapidSim/Attempt/EvtGen/external/pythia8230/share/Pythia8/xmldoc
