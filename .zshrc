@@ -80,12 +80,18 @@ POWERLEVEL9K_CUSTOM_GIT="git_prompt_precmd"
 POWERLEVEL9K_CUSTOM_GIT_BACKGROUND="none"
 POWERLEVEL9K_CUSTOM_GIT_FOREGROUND="default"
 
+# Custom batch jobs prompt
+source ~/.custom_functions/batch_prompt.zsh
+POWERLEVEL9K_CUSTOM_BATCH="batch_prompt_precmd"
+POWERLEVEL9K_CUSTOM_BATCH_BACKGROUND="none"
+POWERLEVEL9K_CUSTOM_BATCH_FOREGROUND="default"
+
 # Left prompt: os icon, current directory
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir custom_git)
 
 # Right prompt: return status of last command, battery level, time
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs anaconda)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_batch background_jobs anaconda)
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
