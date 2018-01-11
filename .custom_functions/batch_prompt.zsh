@@ -1,6 +1,6 @@
 function batch_prompt_precmd() {
     local BATCHINFO=""
-    local SURNAME="hancock"
+    local SURNAME="pullen"
     if [[ $(qstat -ans | grep $SURNAME | wc -l) -ne 0 ]]; then
         local N_TESTING=$(qstat -ans | grep $SURNAME | grep testing | wc -l)
         local N_SHORT=$(qstat -ans | grep $SURNAME | grep shor | wc -l)
