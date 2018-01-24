@@ -3,13 +3,20 @@ function batch_prompt_precmd() {
     local SURNAME="pullen"
     if [[ $(qstat -ans | grep $SURNAME | wc -l) -ne 0 ]]; then
         local N_TESTING=$(qstat -ans | grep $SURNAME | grep testing | wc -l)
-        local N_SHORT=$(qstat -ans | grep $SURNAME | grep shor | wc -l)
+        local N_SHORT_RUNNING=$(qstat -ans | grep $SURNAME | grep shor | awk '{print $10}' | grep R | wc -l)
+        local N_SHORT_QUEUEING=$(qstat -ans | grep $SURNAME | grep shor | awk '{print $10}' | grep Q | wc -l)
         local N_NORMAL=$(qstat -ans | grep $SURNAME | grep normal | wc -l)
         if [[ ${N_TESTING} -ne 0 ]]; then
             BATCHINFO="%{$fg[cyan]%} ${N_TESTING}"
         fi
-        if [[ ${N_SHORT} -ne 0 ]]; then
-            BATCHINFO="${BATCHINFO} %{$fg[green]%} ${N_SHORT}"
+        if [[ $((${N_SHORT_RUNNING} + ${N_SHORT_QUEUEING})) -ne 0 ]]; then
+            BATCHINFO="${BATCHINFO} %{$fg[green]%} "
+        fi
+        if [[ ${N_SHORT_RUNNING} -ne 0 ]]; then 
+            BATCHINFO="${BATCHINFO}${N_SHORT_RUNNING}" 
+        fi
+        if [[ ${N_SHORT_QUEUEING} -ne 0 ]]; then
+            BATCHINFO="${BATCHINFO}(${N_SHORT_QUEUEING})"
         fi
         if [[ ${N_NORMAL} -ne 0 ]]; then
             BATCHINFO="${BATCHINFO} %{$fg[yellow]%} ${N_NORMAL}"

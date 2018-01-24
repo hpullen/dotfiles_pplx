@@ -192,62 +192,62 @@ call plug#begin()
 "Plug 'vim-scripts/TeTrIs.vim'
 " " Comments
 " Plug 'tpope/vim-commentary'
-" Tab completion
-Plug 'ervandew/supertab'
+" " Tab completion
+" Plug 'ervandew/supertab'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
-" NerdTree file explorer
-Plug 'scrooloose/nerdtree'
-" Status bar
-Plug 'itchyny/lightline.vim'
-" Syntastic
-Plug 'vim-syntastic/syntastic'
+" " NerdTree file explorer
+" Plug 'scrooloose/nerdtree'
+" " Status bar
+" Plug 'itchyny/lightline.vim'
+" " Syntastic
+" Plug 'vim-syntastic/syntastic'
 "" Fugitive
 "Plug 'tpope/vim-fugitive'
-" Gitgutter
-Plug 'airblade/vim-gitgutter'
+" " Gitgutter
+" Plug 'airblade/vim-gitgutter'
 " Surround
 Plug 'tpope/vim-surround'
-" Abolish
-Plug 'tpope/vim-abolish'
-" Repeat for tpope plugins
-Plug 'tpope/vim-repeat'
+" " Abolish
+" Plug 'tpope/vim-abolish'
+" " Repeat for tpope plugins
+" Plug 'tpope/vim-repeat'
 " Automatic bracket closing
 "Plug 'raimondi/delimitmate'
-" Fuzzy file search
-Plug 'ctrlpvim/ctrlp.vim'
+" " Fuzzy file search
+" Plug 'ctrlpvim/ctrlp.vim'
 " Undo visualization
 Plug 'mbbill/undotree'
-" Buffer closing without closing window (use :Bd)
-Plug 'moll/vim-bbye'
-" Better incremental searching
-Plug 'haya14busa/incsearch.vim'
-" Easy aligning
-Plug 'junegunn/vim-easy-align'
+" " Buffer closing without closing window (use :Bd)
+" Plug 'moll/vim-bbye'
+" " Better incremental searching
+" Plug 'haya14busa/incsearch.vim'
+" " Easy aligning
+" Plug 'junegunn/vim-easy-align'
 " 2-character version of f and t
 Plug 'justinmk/vim-sneak'
 " Mappings
 Plug 'tpope/vim-unimpaired'
-" More word objects
-Plug 'wellle/targets.vim'
-" Bullet points
-Plug 'dkarter/bullets.vim'
+" " More word objects
+" Plug 'wellle/targets.vim'
+" " Bullet points
+" Plug 'dkarter/bullets.vim'
 "" Visual split
 "Plug 'wellle/visual-split.vim'
-" Easy window resizing
-Plug 'simeji/winresizer'
-" Vim devicons
-Plug 'ryanoasis/vim-devicons'
-" NERDtree syntax highlighting
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Distraction-free writing environment
-Plug 'junegunn/goyo.vim'
-" Rainbow parentheses
-Plug 'luochen1990/rainbow'
-" Improvements to quickfix window
-Plug 'romainl/vim-qf'
+" " Easy window resizing
+" Plug 'simeji/winresizer'
+" " Vim devicons
+" Plug 'ryanoasis/vim-devicons'
+" " NERDtree syntax highlighting
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" " Distraction-free writing environment
+" Plug 'junegunn/goyo.vim'
+" " Rainbow parentheses
+" Plug 'luochen1990/rainbow'
+" " Improvements to quickfix window
+" Plug 'romainl/vim-qf'
 "" Better cpp syntax highlighting
-"Plug 'octol/vim-cpp-enhanced-highlight'
+" "Plug 'octol/vim-cpp-enhanced-highlight'
 " Visual indentation
 Plug 'Yggdroot/indentLine'
 " " Templates for filetypes
@@ -261,7 +261,7 @@ call plug#end()
 " Plugin 'VundleVim/Vundle.vim'
 " " YouCompleteMe autocompleter
 " Plugin 'Valloric/YouCompleteMe'
-" "" Colour coding for C family languages
+"" Colour coding for C family languages
 " "Plugin 'jeaye/color_coded'
 " call vundle#end()
 " filetype plugin indent on
@@ -274,43 +274,43 @@ call plug#end()
  " Trim trailing whitespace when uncommenting
  let g:NERDTrimTrailingWhitespace = 1
 
-" Open NERDTree with ctrl-n
-noremap <silent> <leader>n :NERDTreeToggle<CR>
+" " Open NERDTree with ctrl-n
+" noremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " Open undotree with \u
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
-" Airline settings
-set laststatus=2
-set noshowmode
-let g:lightline = {'colorscheme': 'solarized'}
+" " Airline settings
+" set laststatus=2
+" set noshowmode
+" let g:lightline = {'colorscheme': 'solarized'}
 
-" CtrlP settings
-" Mappings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-" Increase number of results shown in search
-let g:ctrlp_match_window = 'results:20'
-" Open new files in same window
-let g:ctrlp_open_multiple_files = '1vjr'
-let g:ctrlp_open_new_file = 'r'
-" Set working directory to nearest ancestor containing .git
-let g:ctrlp_working_path_mode = 'ra'
-" Ignore files in .gitignore
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" " CtrlP settings
+" " Mappings
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+" " Increase number of results shown in search
+" let g:ctrlp_match_window = 'results:20'
+" " Open new files in same window
+" let g:ctrlp_open_multiple_files = '1vjr'
+" let g:ctrlp_open_new_file = 'r'
+" " Set working directory to nearest ancestor containing .git
+" let g:ctrlp_working_path_mode = 'ra'
+" " Ignore files in .gitignore
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" Syntastic settings
-" Turn off by default for c/cpp (using ycm) and python (annoying for
-" davinci/ganga)
-let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'cpp', 'python'] }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Don't let error list get too big
-let g:syntastic_loc_list_height=4
-" Toggle active/passive mode with \s
-nnoremap <leader>s :SyntasticToggleMode<CR>
+" " Syntastic settings
+" " Turn off by default for c/cpp (using ycm) and python (annoying for
+" " davinci/ganga)
+" let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'cpp', 'python'] }
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" " Don't let error list get too big
+" let g:syntastic_loc_list_height=4
+" " Toggle active/passive mode with \s
+" nnoremap <leader>s :SyntasticToggleMode<CR>
 
 " Still autoindent with delimitmate
 "let delimitMate_expand_cr = 1
@@ -324,55 +324,55 @@ map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 
-" easy-align mappings
-xmap ga <plug>(easyalign)
-nmap ga <plug>(easyalign)
-vmap <Enter> <Plug>(EasyAlign)
+" " easy-align mappings
+" xmap ga <plug>(easyalign)
+" nmap ga <plug>(easyalign)
+" vmap <Enter> <Plug>(EasyAlign)
 
-" Incsearch mappings
-" Use incsearch instead of standard
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-" Turn off highlighting when cursor moves 
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+" " Incsearch mappings
+" " Use incsearch instead of standard
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
+" " Turn off highlighting when cursor moves
+" let g:incsearch#auto_nohlsearch = 1
+" map n  <Plug>(incsearch-nohl-n)
+" map N  <Plug>(incsearch-nohl-N)
+" map *  <Plug>(incsearch-nohl-*)
+" map #  <Plug>(incsearch-nohl-#)
+" map g* <Plug>(incsearch-nohl-g*)
+" map g# <Plug>(incsearch-nohl-g#)
 
-" Filetypes to use Bullets.vim
-let g:bullets_enabled_file_types = [
-    \ 'markdown',
-    \ 'text',
-    \ 'gitcommit',
-    \ 'scratch',
-    \ 'tex'
-     \]
+" " Filetypes to use Bullets.vim
+" let g:bullets_enabled_file_types = [
+    " \ 'markdown',
+    " \ 'text',
+    " \ 'gitcommit',
+    " \ 'scratch',
+    " \ 'tex'
+     " \]
 
-" Devicons settings
-" Pattern matches
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.e\d\+'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.o\d\+'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.tar\.gz'] = ''
-" Exact filename matches
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['makefile'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
-" Custom extensions
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cut'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['param'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['o'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['root'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
-" Limit syntax highlighting in NERDTree (speeds it up)
-let g:NERDTreeLimitedSyntax = 1
+" " Devicons settings
+" " Pattern matches
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.e\d\+'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.o\d\+'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.tar\.gz'] = ''
+" " Exact filename matches
+" let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['makefile'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
+" " Custom extensions
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cut'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['param'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['o'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['root'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
+" " Limit syntax highlighting in NERDTree (speeds it up)
+" let g:NERDTreeLimitedSyntax = 1
 
 " Colour modifications
 function! s:highlight()
@@ -383,7 +383,7 @@ function! s:highlight()
     hi GitGutterChange ctermbg=8 ctermfg=3
     hi GitGutterDelete ctermbg=8 ctermfg=1
     hi GitGutterChangeDelete ctermbg=8 ctermfg=1
-    hi LineNr ctermbg=8 ctermfg=10 
+    hi LineNr ctermbg=8 ctermfg=10
 endfunction
 augroup my_highlights
     autocmd!
@@ -391,11 +391,11 @@ augroup my_highlights
 augroup end
 call s:highlight()
 
-" Rainbow parentheses off by default
-let g:rainbow_active = 0
+" " Rainbow parentheses off by default
+" let g:rainbow_active = 0
 
-"" Enhanced C++ syntax highlighting
-"let g:cpp_class_scope_highlight = 1
+" "" Enhanced C++ syntax highlighting
+" "let g:cpp_class_scope_highlight = 1
 
 " Indent lines
 let g:indentLine_color_term = 0
