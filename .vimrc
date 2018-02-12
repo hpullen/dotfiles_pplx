@@ -176,8 +176,8 @@ set background=dark
 colorscheme solarized
 
 " Timeout
-set timeoutlen=200
-set ttimeoutlen=200
+" set timeoutlen=1000
+" set ttimeoutlen=200
 
 " Easy insert bash shebang
 iab shebang #!/usr/bin/env bash
@@ -188,6 +188,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Plugins
 " Vim-plug
 call plug#begin()
+" Faster editing of large files
+Plug 'vim-scripts/LargeFile'
 "" Tetris
 "Plug 'vim-scripts/TeTrIs.vim'
 " " Comments
@@ -400,3 +402,6 @@ call s:highlight()
 " Indent lines
 let g:indentLine_color_term = 0
 let g:indentLine_char = '|'
+
+" Large filesize
+let g:LargeFile = 0.1
