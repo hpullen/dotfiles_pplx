@@ -21,8 +21,6 @@ set cursorline
 set encoding=utf-8
 " Show at least 10 lines between cursor and end of screen
 set scrolloff=10
-" Tab completion in execute mode
-set wildmenu
 " Only redraw when needed
 set lazyredraw
 " Indicate fast terminal
@@ -39,6 +37,10 @@ set ruler
 set visualbell
 " Allow bright colours
 set t_Co=256
+" Tab completion in execute mode
+set wildmenu
+" Case-insenstive file completion
+set wildignorecase
 
 " More natural split settings
 set splitright
@@ -225,8 +227,8 @@ Plug 'mbbill/undotree'
 " Plug 'moll/vim-bbye'
 " " Better incremental searching
 " Plug 'haya14busa/incsearch.vim'
-" " Easy aligning
-" Plug 'junegunn/vim-easy-align'
+" Easy aligning
+Plug 'junegunn/vim-easy-align'
 " 2-character version of f and t
 Plug 'justinmk/vim-sneak'
 " Mappings
@@ -327,10 +329,10 @@ map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 
-" " easy-align mappings
-" xmap ga <plug>(easyalign)
-" nmap ga <plug>(easyalign)
-" vmap <Enter> <Plug>(EasyAlign)
+" easy-align mappings
+xmap ga <plug>(easyalign)
+nmap ga <plug>(easyalign)
+vmap <Enter> <Plug>(EasyAlign)
 
 " " Incsearch mappings
 " " Use incsearch instead of standard

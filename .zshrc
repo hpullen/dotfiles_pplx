@@ -180,6 +180,17 @@ alias dvi="lb-run DaVinci/v41r2 ipython -i"
 alias bender="lb-run Bender/latest bender"
 alias dstdump="lb-run Bender/latest dst-dump -f -n 100"
 
+# # Root as a function
+# function root() {
+    # DEFAULT_ROOT=/cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin/root
+    # if [ "$1" != "" ]
+    # then
+        # fix_display && $DEFAULT_ROOT -l
+    # else
+        # fix_display && $DEFAULT_ROOT -l -b -q $1
+    # fi
+# }
+
 # tmux aliases
 alias ks="tmux kill-session"
 alias kw="tmux kill-window"
