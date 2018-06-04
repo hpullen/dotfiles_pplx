@@ -28,7 +28,7 @@ set ttyfast
 " Highlight matching bracket
 set showmatch
 " Wrap text at 84 characters
-set textwidth=84
+set textwidth=0
 " Highlight column 85
 set colorcolumn=85
 " Show line/column number
@@ -222,30 +222,30 @@ Plug 'tpope/vim-surround'
 " " Fuzzy file search
 " Plug 'ctrlpvim/ctrlp.vim'
 " Undo visualization
-Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 " " Buffer closing without closing window (use :Bd)
 " Plug 'moll/vim-bbye'
 " " Better incremental searching
 " Plug 'haya14busa/incsearch.vim'
 " Easy aligning
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 " 2-character version of f and t
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 " Mappings
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 " " More word objects
 " Plug 'wellle/targets.vim'
 " " Bullet points
 " Plug 'dkarter/bullets.vim'
 "" Visual split
 "Plug 'wellle/visual-split.vim'
-" " Easy window resizing
+" Easy window resizing
 " Plug 'simeji/winresizer'
 " " Vim devicons
 " Plug 'ryanoasis/vim-devicons'
 " " NERDtree syntax highlighting
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" " Distraction-free writing environment
+" Distraction-free writing environment
 " Plug 'junegunn/goyo.vim'
 " " Rainbow parentheses
 " Plug 'luochen1990/rainbow'
@@ -254,9 +254,11 @@ Plug 'tpope/vim-unimpaired'
 "" Better cpp syntax highlighting
 " "Plug 'octol/vim-cpp-enhanced-highlight'
 " Visual indentation
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 " " Templates for filetypes
 " Plug 'noahfrederick/vim-skeleton'
+" GDB integration
+" Plug 'vim-scripts/Conque-GDB'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
@@ -321,18 +323,18 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 "let delimitMate_expand_cr = 1
 "let delimirMate_expand_space = 1
 
-" Sneak remappings
-map + <Plug>Sneak_s
-map - <Plug>Sneak_S
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+" " Sneak remappings
+" map + <Plug>Sneak_s
+" map - <Plug>Sneak_S
+" map f <Plug>Sneak_f
+" map F <Plug>Sneak_F
+" map t <Plug>Sneak_t
+" map T <Plug>Sneak_T
 
-" easy-align mappings
-xmap ga <plug>(easyalign)
-nmap ga <plug>(easyalign)
-vmap <Enter> <Plug>(EasyAlign)
+" " easy-align mappings
+" xmap ga <plug>(easyalign)
+" nmap ga <plug>(easyalign)
+" vmap <Enter> <Plug>(EasyAlign)
 
 " " Incsearch mappings
 " " Use incsearch instead of standard

@@ -17,10 +17,11 @@ fi
  #fi
 
 # Source correct root
-cd /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin
+CURRENT_DIR=$(pwd)
+# source /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_88/ROOT/6.08.06/x86_64-slc6-gcc62-opt/bin/thisroot.sh
+cd /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin/
 source thisroot.sh
-cd -
-#source /cvmfs/lhcb.cern.ch/lib/lcg/releases/LCG_84/ROOT/6.06.02/x86_64-slc6-gcc49-opt/bin/thisroot.sh
+cd $CURRENT_DIR
 
 # Export environment variables
 export TERM="xterm-256color"
@@ -82,9 +83,9 @@ POWERLEVEL9K_CUSTOM_GIT_FOREGROUND="default"
 
 # Custom batch jobs prompt
 source ~/.custom_functions/batch_prompt.zsh
-POWERLEVEL9K_CUSTOM_BATCH="batch_prompt_precmd"
-POWERLEVEL9K_CUSTOM_BATCH_BACKGROUND="none"
-POWERLEVEL9K_CUSTOM_BATCH_FOREGROUND="default"
+# POWERLEVEL9K_CUSTOM_BATCH="batch_prompt_precmd"
+# POWERLEVEL9K_CUSTOM_BATCH_BACKGROUND="none"
+# POWERLEVEL9K_CUSTOM_BATCH_FOREGROUND="default"
 
 # Left prompt: os icon, current directory
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir custom_git)
@@ -175,7 +176,7 @@ alias getfile="lb-run LHCbDIRAC dirac-dms-get-file"
 export GANGADIR="/data/lhcb/users/pullen/gangadir"
 alias gangadir=/data/lhcb/users/pullen/gangadir
 hash -d gangadir=/data/lhcb/users/pullen/gangadir
-alias dvg="lb-run DaVinci/v41r2 gaudirun.py"
+alias dvg="lb-run DaVinci/v42r6p1 gaudirun.py"
 alias dvi="lb-run DaVinci/v41r2 ipython -i"
 alias bender="lb-run Bender/latest bender"
 alias dstdump="lb-run Bender/latest dst-dump -f -n 100"
@@ -197,7 +198,7 @@ alias kw="tmux kill-window"
 alias kp="tmux kill-pane"
 
 # CDPATH contains places to look for directories
-export CDPATH=/home/pullen/analysis/tuple_scripts/analysis_code/:/data/lhcb/users/pullen/gangadir/ntuples/reduced_ntuples/
+# export CDPATH=/home/pullen/analysis/tuple_scripts/analysis_code/:/data/lhcb/users/pullen/gangadir/ntuples/reduced_ntuples/
 
 # Write display to file on login to a non-tmux shell
 if [ -z "$TMUX" ]
@@ -377,6 +378,14 @@ chj()
 }
 
 
+# Kill all batch jobs
+kill_all_jobs() {
+    for j in $(qstat -ans | grep pullen | grep -o "^[0-9]\+"); do
+        qdel $j
+    done
+}
+
+
 # Function to delete job from list 
 delj() {
     if [[ $# -eq 0 ]] 
@@ -407,10 +416,12 @@ alias cdg="cd $GANGADIR"
 
 # Source custom functions
 source ~/.custom_functions/subdir.sh
+source ~/.custom_functions/get_entries.sh
 alias make="colormake"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--color=16'
 
 # EvtGen stuff
-export LD_LIBRARY_PATH=/home/pullen/RapidSim/Attempt/EvtGen/external/HepMC/lib:/home/pullen/RapidSim/Attempt/EvtGen/external/pythia8230/lib:/home/pullen/RapidSim/Attempt/EvtGen/external/PHOTOS/lib:/home/pullen/RapidSim/Attempt/EvtGen/external/TAUOLA/lib:/home/pullen/RapidSim/Attempt/EvtGen/evtgen/lib:$LD_LIBRARY_PATH
-export PYTHIA8DATA=/home/pullen/RapidSim/Attempt/EvtGen/external/pythia8230/share/Pythia8/xmldoc
+export LD_LIBRARY_PATH=/home/pullen/RapidSim/EvtGen/external/HepMC/lib:/home/pullen/RapidSim/EvtGen/external/pythia8230/lib:/home/pullen/RapidSim/EvtGen/external/PHOTOS/lib:/home/pullen/RapidSim/EvtGen/external/TAUOLA/lib:/home/pullen/RapidSim/EvtGen/evtgen/lib:$LD_LIBRARY_PATH
+export PYTHIA8DATA=/home/pullen/RapidSim/EvtGen/external/pythia8230/share/Pythia8/xmldoc
