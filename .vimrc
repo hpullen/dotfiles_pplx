@@ -153,7 +153,7 @@ augroup filetype_python
     autocmd Filetype python nnoremap <buffer><silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
     autocmd Filetype python setlocal nosmartindent
     autocmd Filetype python setlocal textwidth=0
-    autocmd Filetype python command FixInts %s/\v(^|[^\.])([0-9]+)\/([0-9])+($|[^\.])/\1\2.0\/\3.0\4 
+    autocmd Filetype python command! FixInts %s/\v(^|[^\.])([0-9]+)\/([0-9])+($|[^\.])/\1\2.0\/\3.0\4
 augroup END
 
 " No line wrapping in snakefiles

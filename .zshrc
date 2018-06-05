@@ -417,6 +417,7 @@ alias cdg="cd $GANGADIR"
 # Source custom functions
 source ~/.custom_functions/subdir.sh
 source ~/.custom_functions/get_entries.sh
+source ~/.custom_functions/quick_plot.sh
 alias make="colormake"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
