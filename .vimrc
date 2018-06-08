@@ -222,7 +222,7 @@ Plug 'tpope/vim-surround'
 " " Fuzzy file search
 " Plug 'ctrlpvim/ctrlp.vim'
 " Undo visualization
-" Plug 'mbbill/undotree'
+Plug 'mbbill/undotree'
 " " Buffer closing without closing window (use :Bd)
 " Plug 'moll/vim-bbye'
 " " Better incremental searching
