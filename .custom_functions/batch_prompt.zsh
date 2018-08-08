@@ -24,3 +24,17 @@ function batch_prompt_precmd() {
         echo $BATCHINFO
     fi
 }
+
+function batch_prompt {
+
+    if [[ -z $BATCH_PROMPT ]]; then
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_batch background_jobs anaconda)
+        source $ZSH/oh-my-zsh.sh
+        export BATCH_PROMPT="1"
+    else 
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs anaconda)
+        source $ZSH/oh-my-zsh.sh
+        export BATCH_PROMPT=""
+    fi
+
+}

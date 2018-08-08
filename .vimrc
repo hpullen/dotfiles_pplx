@@ -16,7 +16,7 @@ set undofile
 " Backspace can erase multiple characters
 set backspace=indent,eol,start
 " Highlight current line
-set cursorline
+" set cursorline
 " UTF8 encoding
 set encoding=utf-8
 " Show at least 10 lines between cursor and end of screen
@@ -30,7 +30,7 @@ set showmatch
 " Wrap text at 84 characters
 set textwidth=0
 " Highlight column 85
-set colorcolumn=85
+" set colorcolumn=85
 " Show line/column number
 set ruler
 " Flash for bell
@@ -201,16 +201,16 @@ Plug 'vim-scripts/LargeFile'
 " Plug 'ervandew/supertab'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
-" " NerdTree file explorer
-" Plug 'scrooloose/nerdtree'
+" NerdTree file explorer
+Plug 'scrooloose/nerdtree'
 " " Status bar
 " Plug 'itchyny/lightline.vim'
 " " Syntastic
 " Plug 'vim-syntastic/syntastic'
 "" Fugitive
 "Plug 'tpope/vim-fugitive'
-" " Gitgutter
-" Plug 'airblade/vim-gitgutter'
+" Gitgutter
+Plug 'airblade/vim-gitgutter'
 " Surround
 Plug 'tpope/vim-surround'
 " " Abolish
@@ -223,8 +223,8 @@ Plug 'tpope/vim-surround'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Undo visualization
 Plug 'mbbill/undotree'
-" " Buffer closing without closing window (use :Bd)
-" Plug 'moll/vim-bbye'
+" Buffer closing without closing window (use :Bd)
+Plug 'moll/vim-bbye'
 " " Better incremental searching
 " Plug 'haya14busa/incsearch.vim'
 " Easy aligning
@@ -235,8 +235,8 @@ Plug 'mbbill/undotree'
 " Plug 'tpope/vim-unimpaired'
 " " More word objects
 " Plug 'wellle/targets.vim'
-" " Bullet points
-" Plug 'dkarter/bullets.vim'
+" Bullet points
+Plug 'dkarter/bullets.vim'
 "" Visual split
 "Plug 'wellle/visual-split.vim'
 " Easy window resizing
@@ -254,11 +254,11 @@ Plug 'mbbill/undotree'
 "" Better cpp syntax highlighting
 " "Plug 'octol/vim-cpp-enhanced-highlight'
 " Visual indentation
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 " " Templates for filetypes
 " Plug 'noahfrederick/vim-skeleton'
 " GDB integration
-" Plug 'vim-scripts/Conque-GDB'
+Plug 'vim-scripts/Conque-GDB'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
@@ -410,3 +410,5 @@ let g:indentLine_char = '|'
 
 " Large filesize
 let g:LargeFile = 0.1
+
+hi Normal guibg=NONE ctermbg=NONE
