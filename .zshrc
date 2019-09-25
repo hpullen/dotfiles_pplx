@@ -13,7 +13,7 @@ fi
 
 ## Setup for LHCb
  #if echo "$-" | grep i > /dev/null; then
-     #source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
+     # #source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
  #fi
 
 # Export environment variables
@@ -124,7 +124,7 @@ autoload -U zmv
 autoload -Uz zcalc
 
 # GNU ls colours
-eval `dircolors ~/.dircolors/dircolors.ansi-dark`
+eval `dircolors ~/.dircolors/dircolors.ansi-dark` 
 # Use in tab completion in zsh
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
@@ -171,8 +171,8 @@ alias getfile="lb-run LHCbDIRAC dirac-dms-get-file"
 export GANGADIR="/data/lhcb/users/pullen/gangadir"
 alias gangadir=/data/lhcb/users/pullen/gangadir
 hash -d gangadir=/data/lhcb/users/pullen/gangadir
-alias dvg="lb-run DaVinci/v42r6p1 gaudirun.py"
-alias dvi="lb-run DaVinci/v41r2 ipython -i"
+alias dvg="lb-run DaVinci/v44r6 gaudirun.py"
+alias dvi="lb-run DaVinci/v44r6 ipython -i"
 alias bender="lb-run Bender/latest bender"
 alias dstdump="lb-run Bender/latest dst-dump -f -n 100"
 
@@ -381,6 +381,12 @@ kill_all_jobs() {
 }
 
 
+# Check number of jobs
+jobnum() {
+    qstat | grep $USER | wc -l
+}
+
+
 # Function to delete job from list 
 delj() {
     if [[ $# -eq 0 ]] 
@@ -408,12 +414,19 @@ rep() {
     eval $NEW_COMMAND
 }
 alias cdg="cd $GANGADIR"
+export DATADIR="/data/lhcb/users/pullen/B02DKstar/"
+alias cdd="cd $DATADIR"
 
 # Source custom functions
 source ~/.custom_functions/subdir.sh
 source ~/.custom_functions/get_entries.sh
 source ~/.custom_functions/quick_plot.sh
 alias make="colormake"
+
+# Source GGSZ
+function ggsz {
+    source ~/analysis/GGSZ-Bd2DKst/setenv.sh $*
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--color=16'

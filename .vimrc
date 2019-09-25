@@ -91,6 +91,7 @@ set shiftwidth=4
 set expandtab
 
 " Disable autocommenting on new lines
+set formatoptions-=cro
 augroup filetype_C
     autocmd!
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -137,6 +138,13 @@ augroup filetype_text
     autocmd FileType text setlocal spell
     autocmd FileType text setlocal textwidth=0
     autocmd FileType text noremap <buffer> <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
+augroup END
+
+" Don't use spellcheck in settings.txt files
+augroup filetype_settings
+    autocmd!
+    autocmd FileType settings setlocal nospell
+    autocmd FileType settings set formatoptions-=cro
 augroup END
 
 " Vim file autocommands
@@ -210,7 +218,7 @@ Plug 'scrooloose/nerdtree'
 "" Fugitive
 "Plug 'tpope/vim-fugitive'
 " Gitgutter
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 " Surround
 Plug 'tpope/vim-surround'
 " " Abolish
