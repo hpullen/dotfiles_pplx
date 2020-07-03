@@ -2,6 +2,12 @@
 
 # Source global definitions
 ###Do Not remove the following lines###
+# test if the prompt var is not set
+if [ -z "$PS1" ]; then
+        # prompt var is not set, so this is *not* an interactive shell
+            return
+fi
+
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 else
@@ -14,7 +20,7 @@ fi
 if echo "$-" | grep i > /dev/null; then
 # source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh -c x86_64-slc6-gcc49-opt
 	echo "Sourcing LHCb login"
-	source /cvmfs/lhcb.cern.ch/group_login.sh
+    source /cvmfs/lhcb.cern.ch/group_login.sh
 	echo "Done"
 fi
 

@@ -12,9 +12,9 @@ else
 fi
 
 ## Setup for LHCb
- #if echo "$-" | grep i > /dev/null; then
-     # #source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
- #fi
+ # if echo "$-" | grep i > /dev/null; then
+ #    # source /data/lhcb/sw/scripts/lbsetup-cvmfs.sh
+ # fi
 
 # Export environment variables
 export TERM="xterm-256color"
@@ -32,6 +32,7 @@ else
     POWERLEVEL9K_MODE='default'
 fi
 ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="evan"
 
 # PowerLevel9k settings
 # Shorten dir and status
@@ -81,7 +82,8 @@ POWERLEVEL9K_CUSTOM_BATCH_BACKGROUND="none"
 POWERLEVEL9K_CUSTOM_BATCH_FOREGROUND="default"
 
 # Left prompt: os icon, current directory
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir custom_git)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir custom_git)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir)
 
 # Right prompt: return status of last command, battery level, time
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
@@ -132,6 +134,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 alias zshrc="vim ~/.zshrc"
 alias zr="source ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
+alias vimm="vim -u ~/.vimrc_minimal"
 alias ls="ls --color=auto --group-directories-first"
 alias la="ls -a --color=auto"
 alias ll="ls -lh --color=auto"

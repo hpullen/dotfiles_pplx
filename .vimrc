@@ -30,7 +30,7 @@ set showmatch
 " Wrap text at 84 characters
 set textwidth=0
 " Highlight column 85
-" set colorcolumn=85
+set colorcolumn=80
 " Show line/column number
 set ruler
 " Flash for bell
@@ -45,6 +45,9 @@ set wildignorecase
 " More natural split settings
 set splitright
 set splitbelow
+
+" Use jk for esc
+imap jk <Esc>
 
 " Make Y behave like C and D (yank to end of line)
 nnoremap Y y$
@@ -201,16 +204,41 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 call plug#begin()
 " Faster editing of large files
 Plug 'vim-scripts/LargeFile'
+" Visual indentation
+Plug 'Yggdroot/indentLine'
+" NerdCommenter autocommenting
+Plug 'scrooloose/nerdcommenter'
+" NerdTree file explorer
+Plug 'scrooloose/nerdtree'
+" Surround
+Plug 'tpope/vim-surround'
+" Undo visualization
+Plug 'mbbill/undotree'
+" Buffer closing without closing window (use :Bd)
+Plug 'moll/vim-bbye'
+" Bullet points
+Plug 'dkarter/bullets.vim'
+" Improvements to quickfix window
+Plug 'romainl/vim-qf'
+" Better incremental searching
+Plug 'haya14busa/incsearch.vim'
+
+" " Visual split
+" Plug 'wellle/visual-split.vim'
+" " Vim devicons
+" Plug 'ryanoasis/vim-devicons'
+" " NERDtree syntax highlighting
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" " Distraction-free writing environment
+" Plug 'junegunn/goyo.vim'
+" " Better cpp syntax highlighting
+" Plug 'octol/vim-cpp-enhanced-highlight'
 "" Tetris
 "Plug 'vim-scripts/TeTrIs.vim'
 " " Comments
 " Plug 'tpope/vim-commentary'
 " " Tab completion
 " Plug 'ervandew/supertab'
-" NerdCommenter autocommenting
-Plug 'scrooloose/nerdcommenter'
-" NerdTree file explorer
-Plug 'scrooloose/nerdtree'
 " " Status bar
 " Plug 'itchyny/lightline.vim'
 " " Syntastic
@@ -219,8 +247,6 @@ Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-fugitive'
 " Gitgutter
 " Plug 'airblade/vim-gitgutter'
-" Surround
-Plug 'tpope/vim-surround'
 " " Abolish
 " Plug 'tpope/vim-abolish'
 " " Repeat for tpope plugins
@@ -229,12 +255,6 @@ Plug 'tpope/vim-surround'
 "Plug 'raimondi/delimitmate'
 " " Fuzzy file search
 " Plug 'ctrlpvim/ctrlp.vim'
-" Undo visualization
-Plug 'mbbill/undotree'
-" Buffer closing without closing window (use :Bd)
-Plug 'moll/vim-bbye'
-" " Better incremental searching
-" Plug 'haya14busa/incsearch.vim'
 " Easy aligning
 " Plug 'junegunn/vim-easy-align'
 " 2-character version of f and t
@@ -243,30 +263,14 @@ Plug 'moll/vim-bbye'
 " Plug 'tpope/vim-unimpaired'
 " " More word objects
 " Plug 'wellle/targets.vim'
-" Bullet points
-Plug 'dkarter/bullets.vim'
-"" Visual split
-"Plug 'wellle/visual-split.vim'
 " Easy window resizing
 " Plug 'simeji/winresizer'
-" " Vim devicons
-" Plug 'ryanoasis/vim-devicons'
-" " NERDtree syntax highlighting
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Distraction-free writing environment
-" Plug 'junegunn/goyo.vim'
 " " Rainbow parentheses
 " Plug 'luochen1990/rainbow'
-" " Improvements to quickfix window
-" Plug 'romainl/vim-qf'
-"" Better cpp syntax highlighting
-" "Plug 'octol/vim-cpp-enhanced-highlight'
-" Visual indentation
-Plug 'Yggdroot/indentLine'
 " " Templates for filetypes
 " Plug 'noahfrederick/vim-skeleton'
 " GDB integration
-Plug 'vim-scripts/Conque-GDB'
+" Plug 'vim-scripts/Conque-GDB'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
@@ -289,8 +293,8 @@ call plug#end()
  " Trim trailing whitespace when uncommenting
  let g:NERDTrimTrailingWhitespace = 1
 
-" " Open NERDTree with ctrl-n
-" noremap <silent> <leader>n :NERDTreeToggle<CR>
+" Open NERDTree with ctrl-n
+noremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " Open undotree with \u
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
@@ -415,6 +419,8 @@ call s:highlight()
 " Indent lines
 let g:indentLine_color_term = 0
 let g:indentLine_char = '|'
+let g:indentLine_faster = 1
+let g:indentLine_setConceal = 0
 
 " Large filesize
 let g:LargeFile = 0.1
